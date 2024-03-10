@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}fans list{% endblock  %}
+
+{% block content %}
+ {% for fans in fan_list %}
+  <ul>
+    <li><a href="{% url "single_fan_page" fans.pk %}">{{fans.name}} :level  ({{fans.fan_level}})</li>
+  </ul>
+ {% endfor %}
+
+{% endblock  %}

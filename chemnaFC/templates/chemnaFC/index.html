@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %} chemna foot ball club{% endblock  %}
+
+{% block content %}
+       <h2><a href="{% url "index_page" %}" >Chemna Football Club  CFC 
+</h2>
+       <ul>
+           <li> <a href="{% url "squad_page" %}" >squad  </li>
+           <li> <a href="{% url "table_page" %}" >table  </li>
+           <li> <a href="{% url "match_page" %}" >match  </li>
+           <li> <a href="{% url "fan_page" %}" >fan's  </li>
+          
+       </ul>
+{% endblock  %}

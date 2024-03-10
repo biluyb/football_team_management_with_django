@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %} chemna foot ball club{% endblock  %}
+
+{% block content %}
+    <h3>team squad</h3>
+        {% for players in squad  %}
+                 <ul>
+                        <li> <a href="{% url "players_information" players.pname %}"  > {{players.pname|title}}</li> 
+                         <ul type=circle>
+                                <li>{{players.prating}}
+                                </li>
+                        </ul>
+                 </ul>
+        {% endfor %}
+
+{% endblock  %} 

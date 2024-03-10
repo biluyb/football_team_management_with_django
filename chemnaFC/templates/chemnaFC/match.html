@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %} chemna foot ball club{% endblock  %}
+
+{% block content %}
+<h3>team matches </h3>
+  {% for games in match  %}
+      <ul>
+         <li> chemnaFC Vs {{games.club_name|title}}</li>
+         <ul> stadium  : {{games.stadium |title}}</ul>
+         <ul> time : {{games.date |date}}</ul>
+      </ul>
+  {% endfor %}
+{% endblock  %}

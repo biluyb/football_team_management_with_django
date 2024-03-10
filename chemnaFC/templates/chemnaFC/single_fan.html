@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}single fan detail{% endblock  %}
+
+{% block content %}
+<ul>
+    {% comment %} <li><img src="{{picture.fan_picture.url}}"></li> {% endcomment %}
+    <li> <img src="{{single_fan.fan_picture.url}}"></li>
+    <li>fan name: {{single_fan.name}}</li>
+    <li>sex: {{single_fan.gender}}</li>
+    <li>email {{single_fan.email}}</li>
+    <li>level: {{single_fan.fan_level}}</li>
+    <li>password: {{single_fan.password}}</li>
+</ul>
+{% endblock  %}

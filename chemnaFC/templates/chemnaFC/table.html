@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %} chemna foot ball club{% endblock  %}
+
+{% block content %}
+     <!-- table.html -->
+<table>
+  <thead>
+    <tr>
+      <th>Club Name</th>
+      <th>Points</th>
+      <th>Wins</th>
+      <th>Loses</th>
+      <th>Draws</th>
+      <th>Goals</th>
+      <th>Played</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for entry in table %}
+      <tr>
+        <td>{{ entry.club_name.cname }}</td>
+        <td>{{ entry.point }}</td>
+        <td>{{ entry.win }}</td>
+        <td>{{ entry.lose }}</td>
+        <td>{{ entry.draw }}</td>
+        <td>{{ entry.goal }}</td>
+        <td>{{ entry.played }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock  %}

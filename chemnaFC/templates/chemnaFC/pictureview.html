@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}profile picture{% endblock  %}
+
+{% block content %}
+  {% for picture in fan_picture  %}
+  <li><img src="{{picture.fan_picture.url}}"></li>
+  
+  {% endfor %}
+{% endblock  %}

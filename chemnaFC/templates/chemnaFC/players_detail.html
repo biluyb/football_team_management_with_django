@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %} chemna foot ball club{% endblock  %}
+
+{% block content %}
+   {% comment %} <h4> {{detail.pname}}`s information <h4>
+    <ul> 
+    <li>age: {{detail.page}}</li>
+    <li>position: {{detail.pposition}}</li>
+    <li>foot: {{detail.pfoot}}</li>
+    <li>rating: {{detail.page}}</li> {% endcomment %}
+    {% comment %} </ul> {% endcomment %}
+    <h4>{{ detail.pname }}'s information</h4>
+<ul>
+    <li>age: {{ detail.page }}</li>
+    <li>position:
+        {% for position in detail.pposition.all %}
+            {{ position.position_name }}
+                <li>foot: {{ position.foot }}</li> 
+        {% endfor %}
+    </li>
+
+    <li>rating: {{ detail.prating }}</li>
+</ul>
+{% endblock  %}
