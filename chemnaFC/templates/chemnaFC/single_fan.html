@@ -11,4 +11,13 @@
     <li>level: {{single_fan.fan_level}}</li>
     <li>password: {{single_fan.password}}</li>
 </ul>
+{% if is_favorite %}
+    <p>this is my favorite </p>
+{% else %}  
+<form action= "/fan_list/favorite" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="favorite_input"  value="{{single_fan.id}}" >
+    <button>favorite</button>
+ </form>
+ {% endif %}
 {% endblock  %}

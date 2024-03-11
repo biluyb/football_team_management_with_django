@@ -114,6 +114,21 @@ class SingleFanView(DetailView):
     model=Fans
     context_object_name="single_fan"
 
+    def get_context_data(self, **kwargs) :
+        context = super().get_context_data(**kwargs)
+        loaded_review=self.object
+        request=self.request
+        favorite_id=request.session.get("favorite_ses")
+        context["is_favorite"]=favorite_id == str(loaded_review.id)
+        return context
+    
+
+class FavoriteView(View):
+    def post(self,request):
+        review_id= request.POST["favorite_input"]
+        request.session["favorite_ses"]=review_id
+        return HttpResponseRedirect("/fan_list/" + review_id)
+
      
     # def get_context_data(self, **kwargs):
     #     context = super().get_context_data(**kwargs)
