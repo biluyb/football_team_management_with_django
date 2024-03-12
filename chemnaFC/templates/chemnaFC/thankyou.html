@@ -1,10 +1,54 @@
 {% extends "base.html" %}
 
-{% block title %}  thank you {% endblock  %}
+{% block title %}Thank You{% endblock %}
 
 {% block content %}
-<h2>you register successfully !</h2>
-    <h3>thank you for register ! </h3>
-<p> {{message}} </p>
-<p> <a href="{% url "index_page" %}">HOME </p>
-{% endblock  %}
+<style>
+  .success-message {
+    text-align: center;
+    margin-top: 50px;
+    font-family: Arial, sans-serif;
+  }
+
+  .success-message h2 {
+    color: #0047ab;
+    font-size: 28px;
+    margin-top: 0;
+  }
+
+  .success-message h3 {
+    color: #0047ab;
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  .success-message p {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .home-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  .home-link:hover {
+    background-color: #45a049;
+  }
+</style>
+
+<div class="success-message">
+  <h2>You have registered successfully!</h2>
+  <h3>Thank you for registering!</h3>
+  <p>{{ message }}</p>
+  <p><a class="home-link" href="{% url 'index_page' %}">HOME</a></p>
+</div>
+{% endblock %}
