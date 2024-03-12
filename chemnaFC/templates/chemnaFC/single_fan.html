@@ -83,12 +83,12 @@
 </ul>
 
 {% if is_favorite %}
-  <p class="favorite-message"><i class="fas fa-heart favorite-icon"></i>This is my favorite</p>
+  <p class="favorite-message"><i class="fas fa-heart favorite-icon"></i>Top fan</p>
 {% else %}
   <form action="/fan_list/favorite" method="POST" class="favorite-form">
     {% csrf_token %}
     <input type="hidden" name="favorite_input" value="{{ single_fan.id }}">
-    <button>Favorite</button>
+    <button>Top Fan</button>
   </form>
 {% endif %}
 
