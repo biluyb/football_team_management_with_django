@@ -1,3 +1,4 @@
+import re
 from typing import Any
 from django.db.models.query import QuerySet
 from django.http import HttpResponseRedirect
@@ -22,11 +23,9 @@ def table(request):
     sorted_entries = sorted(table, key=lambda x: (x.point, x.goal), reverse=True)
     return render(request , "chemnaFC/table.html", {"table":sorted_entries})
 
-
 def match(request):
     match = Matches.objects.all()
     return render(request , "chemnaFC/match.html", {"match":match})
-
 
 def players_information(request, player):
     # detail =Squad.objects.get(pname=player)
@@ -46,8 +45,7 @@ def players_information(request, player):
 #                 password=form.cleaned_data['password']
 #                     )
 #                 fan_save.save()
-#                 return HttpResponseRedirect("/thankyou")
-      
+#                 return HttpResponseRedirect("/thankyou")   
 #     else : 
 #      form = FansForm()
 #     return render(request, "chemnaFC/fan.html",{"form":form})
@@ -55,10 +53,8 @@ def players_information(request, player):
 #     def get(self,request):
 #         form = FansForm()
 #         return render(request, "chemnaFC/fan.html",{"form":form})
-
 #     def post(self,request):
 #         form = FansForm(request.POST)
-
 #         if form.is_valid():
 #             form.save()
 #             return HttpResponseRedirect("/thankyou")
@@ -70,12 +66,30 @@ class FansFormViews(CreateView):
     form_class=FanForm
     success_url="/thankyou"
 
+    def form_valid(self, form):
+        # Additional validation in the view
+        password = form.cleaned_data['password']
+        confirm_password = form.cleaned_data['confirm_password']
+
+        if len(password) < 8:
+            form.add_error('password', 'Password must be at least 8 characters long.')
+
+        if password != confirm_password:
+            form.add_error('confirm_password', 'Passwords do not match.')
+
+        if not re.search(r'\d', password) or not re.search(r'[a-zA-Z]', password):
+            form.add_error('password', 'Password must contain both letters and numbers.')
+
+        if form.errors:
+            return self.form_invalid(form)
+
+        return super().form_valid(form)
+    
 class FanPictureView(CreateView):
     template_name="chemnaFC/fan.html"
     model=FanPicture
     fields="__all__"
     success_url="/thankyou"
-
 class PictureView(ListView):
     template_name="chemnaFC/pictureview.html"
     model=FanPicture
@@ -92,7 +106,6 @@ class ThankyouView(TemplateView):
         context = super().get_context_data(**kwargs)
         context["message"] = "thank you for register"
         return context
-
 class FansListView(ListView):
     template_name="chemnaFC/fan_list.html"
     model=Fans
@@ -102,48 +115,25 @@ class FansListView(ListView):
     #     base_query=super().get_queryset()
     #     data=base_query.filter(fan_level='A' and 'C')
     #     return data
-
     # def get_context_data(self, **kwargs):
     #     context = super().get_context_data(**kwargs)
     #     fan  = Fans.objects.all()
     #     context["fan_list"]=fan
     #     return context
-    
 class SingleFanView(DetailView):
     template_name="chemnaFC/single_fan.html"
     model=Fans
     context_object_name="single_fan"
 
-    def get_context_data(self, **kwargs) :
-        context = super().get_context_data(**kwargs)
-        loaded_review=self.object
+    def get_context_data(self, **kwargs: Any) :
+        context= super().get_context_data(**kwargs)
+        loaded_page=self.object
         request=self.request
         favorite_id=request.session.get("favorite_ses")
-        context["is_favorite"]=favorite_id == str(loaded_review.id)
+        context["is_favorite"]=favorite_id==str(loaded_page.id)
         return context
-    
-
 class FavoriteView(View):
-    def post(self,request):
-        review_id= request.POST["favorite_input"]
-        request.session["favorite_ses"]=review_id
-        return HttpResponseRedirect("/fan_list/" + review_id)
-
-     
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     selected_fan =kwargs["i d"]
-    #     single_fan  = Fans.objects.get(pk=selected_fan)
-    #     context["single_fan"]=single_fan
-    #     return context
-# def store_file(file):
-#     with open("temp/image.jpg","wb+") as dest:
-#         for chunk in file.chunks():
-#             dest.write(chunk)
-# class ProfileView(View):
-#     def get(self ,request):
-#         return render(request,"chemnaFC/fan.html")
-    
-#     def post(self,request):
-#         store_file(request.FILES["image"])
-#         return HttpResponseRedirect("/match")
+      def post(self,request):
+          favorite_id=request.POST["favorite_input"]
+          request.session["favorite_ses"]=favorite_id
+          return HttpResponseRedirect("/fan_list/" + favorite_id)

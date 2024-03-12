@@ -1,25 +1,91 @@
 {% extends "base.html" %}
 
-{% block title %} chemna foot ball club{% endblock  %}
+{% block title %}Chemna Football Club{% endblock %}
 
 {% block content %}
-   {% comment %} <h4> {{detail.pname}}`s information <h4>
-    <ul> 
-    <li>age: {{detail.page}}</li>
-    <li>position: {{detail.pposition}}</li>
-    <li>foot: {{detail.pfoot}}</li>
-    <li>rating: {{detail.page}}</li> {% endcomment %}
-    {% comment %} </ul> {% endcomment %}
-    <h4>{{ detail.pname }}'s information</h4>
-<ul>
-    <li>age: {{ detail.page }}</li>
-    <li>position:
-        {% for position in detail.pposition.all %}
-            {{ position.position_name }}
-                <li>foot: {{ position.foot }}</li> 
-        {% endfor %}
-    </li>
+<style>
+     .home-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out;
+  }
+  .player-details {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
 
-    <li>rating: {{ detail.prating }}</li>
-</ul>
-{% endblock  %}
+  .player-details h4 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+
+  .player-details ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .player-details li {
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+
+  .foot-icon {
+    margin-left: 5px;
+    color: #337ab7;
+    font-size: 14px;
+  }
+
+  .player-details .position-list {
+    margin-top: 10px;
+  }
+
+  .player-details .position-list li {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 5px 10px;
+    background-color: #337ab7;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+  .player-details .rating {
+    font-weight: bold;
+    font-size: 18px;
+    color: #337ab7;
+  }
+</style>
+
+<div class="player-details">
+  <h4>{{ detail.pname }}'s Information</h4>
+
+  <ul>
+    <li>Age: {{ detail.page }}</li>
+    <li>Position:
+      <ul class="position-list">
+        {% for position in detail.pposition.all %}
+          <li>{{ position.position_name }}</li>
+        {% endfor %}
+      </ul>
+    </li>
+    <li>Rating: <span class="rating">{{ detail.prating }}</span></li>
+  </ul>
+</div>
+
+<!-- Add the Font Awesome library -->
+<script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
+<p><a class="home-link" href="{% url 'index_page' %}">Home</a></p>{% endblock %}

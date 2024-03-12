@@ -1,17 +1,89 @@
 {% extends "base.html" %}
 
-{% block title %} chemna foot ball club{% endblock  %}
+{% block title %}Chemna Football Club{% endblock %}
 
 {% block content %}
-    <h3>team squad</h3>
-        {% for players in squad  %}
-                 <ul>
-                        <li> <a href="{% url "players_information" players.pname %}"  > {{players.pname|title}}</li> 
-                         <ul type=circle>
-                                <li>{{players.prating}}
-                                </li>
-                        </ul>
-                 </ul>
-        {% endfor %}
+<style>
+     .home-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out;
+  }
 
-{% endblock  %} 
+  .home-link:hover {
+    background-color: #45a049;
+  }
+
+  .team-squad {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+  }
+
+  .team-squad h3 {
+    color: #0047ab;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+
+  .team-squad ul {
+    padding-left: 20px;
+    margin: 0;
+  }
+
+  .team-squad li {
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+
+  .team-squad a {
+    text-decoration: none;
+    color: #000000;
+    font-weight: bold;
+    transition: color 0.2s ease-in-out;
+  }
+
+  .team-squad a:hover {
+    color: #ff4d4d;
+  }
+
+  .team-squad ul ul {
+    list-style: none;
+    margin-top: 5px;
+    padding-left: 20px;
+  }
+
+  .team-squad ul ul li {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #666666;
+  }
+</style>
+
+<div class="team-squad">
+  <h3>Team Squad</h3>
+
+  <ul>
+    {% for player in squad %}
+      <li>
+        <a href="{% url 'players_information' player.pname %}">{{ player.pname|title }}</a>
+        <ul>
+          <li>Rating: {{ player.prating }}</li>
+        </ul>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+<p><a class="home-link" href="{% url 'index_page' %}">Home</a></p>{% endblock %}

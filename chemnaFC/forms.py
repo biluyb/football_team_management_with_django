@@ -16,9 +16,13 @@ from .models import Fans,FanPicture
 #         model = Fans
 #         fields = "__all__"
 class FanForm(forms.ModelForm):
+    confirm_password = forms.CharField(widget=forms.PasswordInput)
     class Meta:
         model= Fans
         fields="__all__"
+
+
+        
 
 class FansPictureForm(forms.ModelForm):
     class Meta:
@@ -35,20 +39,3 @@ class FansPictureForm(forms.ModelForm):
         #         "max_length":"Your Name is Too Long"
         #     }
         # }
-        
-
-    def clean(self):
-        cleaned_data = super().clean()
-        password = cleaned_data.get('password')
-        confirm_password = cleaned_data.get('confirm_password')
-
-        if password and len(password) < 8:
-            self.add_error('password', 'Password must be at least 8 characters long.')
-
-        if password and confirm_password and password != confirm_password:
-            self.add_error('confirm_password', 'Passwords do not match.')
-
-        if password and not re.search(r'\d', password) or not re.search(r'[a-zA-Z]', password):
-            self.add_error('password', 'Password must contain both letters and numbers.')
-
-        return cleaned_data

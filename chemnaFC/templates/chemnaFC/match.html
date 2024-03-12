@@ -1,14 +1,113 @@
 {% extends "base.html" %}
 
-{% block title %} chemna foot ball club{% endblock  %}
+{% block title %}Chemna Football Club{% endblock %}
 
 {% block content %}
-<h3>team matches </h3>
-  {% for games in match  %}
-      <ul>
-         <li> chemnaFC Vs {{games.club_name|title}}</li>
-         <ul> stadium  : {{games.stadium |title}}</ul>
-         <ul> time : {{games.date |date}}</ul>
-      </ul>
+<style>
+  .team-matches {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+  }
+
+  .team-matches h3 {
+    color: #0047ab;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+
+  .team-matches ul {
+    padding-left: 20px;
+    margin: 0;
+  }
+
+  .team-matches li {
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+
+  .team-matches a {
+    text-decoration: none;
+    color: #000000;
+    font-weight: bold;
+    transition: color 0.2s ease-in-out;
+  }
+
+  .team-matches a:hover {
+    color: #ff4d4d;
+  }
+
+  .team-matches ul ul {
+    list-style: none;
+    margin-top: 5px;
+    padding-left: 20px;
+  }
+
+  .team-matches ul ul li {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #666666;
+  }
+
+  .team-matches .game-color {
+    background-color: #f2f2f2;
+    padding: 10px;
+    border-radius: 4px;
+    position: relative;
+  }
+
+  .team-matches .game-color:nth-child(even) {
+    background-color: #eaeaea;
+  }
+
+  .team-matches .game-color:before {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 100%;
+    top: 0;
+    left: -10px;
+    background-color: #ff4d4d;
+    border-radius: 4px 0 0 4px;
+  }
+
+  .team-matches .game-color:nth-child(even):before {
+    background-color: #00bfff;
+  }
+
+  .home-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  .home-link:hover {
+    background-color: #45a049;
+  }
+</style>
+
+<div class="team-matches">
+  <h3>Team Matches</h3>
+
+  {% for games in match %}
+    <ul class="game-color">
+      <li>Chemna FC Vs {{ games.club_name|title }}</li>
+      <ul>Stadium: {{ games.stadium|title }}</ul>
+      <ul>Time: {{ games.date|date }}</ul>
+    </ul>
   {% endfor %}
-{% endblock  %}
+</div>
+<p><a class="home-link" href="{% url 'index_page' %}">Home</a></p>
+{% endblock %}

@@ -1,17 +1,64 @@
 {% extends "base.html" %}
 
-{% block title %} chemna foot ball club{% endblock  %}
+{% block title %}Chemna Football Club{% endblock %}
 
 {% block content %}
-<form method="POST"  action="/fan" enctype="multipart/form-data">
-  {% csrf_token %}
-  {{form.as_p}}
-  {% comment %} {% for field in form %}
-  {{field.lable}}
-  {{field}}
-  {{field.errors}}
-  {% endfor %} {% endcomment %}
-  <button type="submit">register</button>
- </form>
+<style>
+ #form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
 
-{% endblock  %}
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  button[type="submit"],
+  .home-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  button[type="submit"]:hover,
+  .home-link:hover {
+    background-color: #45a049;
+  }
+</style>
+
+<div id="form">
+  <form method="POST" action="/fan" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    {% comment %} <lable> confirm password</lable>
+    <input type="text" value="confirm_password"> {% endcomment %}
+    <button type="submit">Register</button>
+  </form>
+</div>
+<p><a class="home-link" href="{% url 'index_page' %}">Home</a></p>
+
+{% endblock %}

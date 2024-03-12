@@ -1,33 +1,80 @@
 {% extends "base.html" %}
 
-{% block title %} chemna foot ball club{% endblock  %}
+{% block title %}Chemna Football Club{% endblock %}
 
 {% block content %}
-     <!-- table.html -->
-<table>
-  <thead>
-    <tr>
-      <th>Club Name</th>
-      <th>Points</th>
-      <th>Wins</th>
-      <th>Loses</th>
-      <th>Draws</th>
-      <th>Goals</th>
-      <th>Played</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for entry in table %}
+<style>
+  .table-container {
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+  }
+
+  thead th {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+
+  tbody td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .home-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  .home-link:hover {
+    background-color: #45a049;
+  }
+</style>
+
+<div class="table-container">
+  <table>
+    <thead>
       <tr>
-        <td>{{ entry.club_name.cname }}</td>
-        <td>{{ entry.point }}</td>
-        <td>{{ entry.win }}</td>
-        <td>{{ entry.lose }}</td>
-        <td>{{ entry.draw }}</td>
-        <td>{{ entry.goal }}</td>
-        <td>{{ entry.played }}</td>
+        <th>Club Name</th>
+        <th>Points</th>
+        <th>Wins</th>
+        <th>Loses</th>
+        <th>Draws</th>
+        <th>Goals</th>
+        <th>Played</th>
       </tr>
-    {% endfor %}
-  </tbody>
-</table>
-{% endblock  %}
+    </thead>
+    <tbody>
+      {% for entry in table %}
+        <tr>
+          <td>{{ entry.club_name.cname }}</td>
+          <td>{{ entry.point }}</td>
+          <td>{{ entry.win }}</td>
+          <td>{{ entry.lose }}</td>
+          <td>{{ entry.draw }}</td>
+          <td>{{ entry.goal }}</td>
+          <td>{{ entry.played }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<p><a class="home-link" href="{% url 'index_page' %}">Home</a></p>
+{% endblock %}
