@@ -153,13 +153,13 @@ class FavoriteView(View):
 
     # return render (request,"chemnaFC/login.html",{'form':LoginForm})
       
-@login_required    
-def ProfileView(request):
+# @login_required    
+# def ProfileView(request):
       
 
-      return render (request,"chemnaFC/pictureview.html",{'section':'ProfileView'})
+#       return render (request,"chemnaFC/pictureview.html",{'section':'ProfileView'})
 
 
 
-def forgot(request):
-    return render (request,"chemnaFC/forgot.html")
+# def forgot(request):
+#     return render (request,"chemnaFC/forgot.html")
