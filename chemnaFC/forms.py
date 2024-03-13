@@ -1,7 +1,7 @@
 import re
 from django import forms
 from .models import Fans,FanPicture
-
+from django.contrib.auth.models import User
 # class FansForm(forms.ModelForm):
 #     fan_picture=forms.FileField( null=True)
 #     name = forms.CharField(max_length=100)
@@ -39,3 +39,6 @@ class FansPictureForm(forms.ModelForm):
         #         "max_length":"Your Name is Too Long"
         #     }
         # }
+class LoginForm(forms.Form):
+    username=forms.CharField()
+    password=forms.CharField(widget=forms.PasswordInput)

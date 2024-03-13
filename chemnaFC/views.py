@@ -3,12 +3,14 @@ from typing import Any
 from django.db.models.query import QuerySet
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
-from .forms import FanForm,FansPictureForm
+from .forms import FanForm,FansPictureForm,LoginForm
 from .models import Squad, Matches,Table,Fans,FanPicture
 from django.views import View
 from django.views.generic.base import TemplateView
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import FormView,CreateView
+from django.contrib import auth,messages
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def index(request):
@@ -137,3 +139,27 @@ class FavoriteView(View):
           favorite_id=request.POST["favorite_input"]
           request.session["favorite_ses"]=favorite_id
           return HttpResponseRedirect("/fan_list/" + favorite_id)
+      
+# def login(request):
+    # if request.method =="POST":
+    #     name =request.POST.get("name")
+    #     password=request.POST.get("password")
+    #     user=auth.authenticate(username=name,password=password)
+    #     if user is not None:
+    #         auth.login(request, user)
+    #         return render(request,"chemnaFC/fan_list.html")
+    #     else:
+    #         messages.error(request,'invalid information')
+
+    # return render (request,"chemnaFC/login.html",{'form':LoginForm})
+      
+@login_required    
+def ProfileView(request):
+      
+
+      return render (request,"chemnaFC/pictureview.html",{'section':'ProfileView'})
+
+
+
+def forgot(request):
+    return render (request,"chemnaFC/forgot.html")

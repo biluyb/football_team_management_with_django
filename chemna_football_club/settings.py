@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+LOGIN_URL= "login"
 # Application definition
 
 INSTALLED_APPS = [
@@ -129,3 +129,5 @@ MEDIA_ROOT = BASE_DIR / "upload"
 MEDIA_URL = "/user-media/"
 
 SESSION_COOKIE_DEAD = 1200
+
+

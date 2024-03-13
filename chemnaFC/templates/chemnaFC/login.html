@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}login{% endblock title %}
+
+{% block content %}
+
+<form action="{% url "match_page" %}" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    {% comment %} <lable name="user_name">user name</lable></br>
+    <input type="text" name="name"></br>
+    <lable name="password">password</lable></br>
+    <input type="text" name="password"></br>
+     {% endcomment %}
+     <button type="submit">LOGIN</button>
+</form>
+<p><a href="{% url 'forgot_page' %}">forgot password ?</a></p>
+
+
+{% endblock content %}
