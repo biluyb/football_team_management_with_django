@@ -29,16 +29,16 @@ class FansPictureForm(forms.ModelForm):
         model=FanPicture
         fields="__all__"
 
-        # labels ={
-        #    "name":"Your Name",
-        #    "email":"Your Email Address"
-        # }
-        # error_message={
-        #     "name": {
-        #         "required":"You Must Enter Your Name",
-        #         "max_length":"Your Name is Too Long"
-        #     }
-        # }
+        labels ={
+           "name":"Your Name",
+           "email":"Your Email Address"
+        }
+        error_message={
+            "name": {
+                "required":"You Must Enter Your Name",
+                "max_length":"Your Name is Too Long"
+            }
+        }
 class LoginForm(forms.Form):
     username=forms.CharField()
     password=forms.CharField(widget=forms.PasswordInput)
