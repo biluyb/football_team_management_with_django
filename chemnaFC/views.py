@@ -9,7 +9,7 @@ from django.views import View
 from django.views.generic.base import TemplateView
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import FormView,CreateView
-from django.contrib import auth,messages
+# from django.contrib import auth,messages
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
