@@ -127,13 +127,13 @@ class SingleFanView(DetailView):
     model=Fans
     context_object_name="single_fan"
 
-    # def get_context_data(self, **kwargs: Any) :
-    #     context= super().get_context_data(**kwargs)
-    #     loaded_page=self.object
-    #     request=self.request
-    #     favorite_id=request.session.get("favorite_ses")
-    #     context["is_favorite"]=favorite_id==str(loaded_page.id)
-    #     return context
+    def get_context_data(self, **kwargs: Any) :
+        context= super().get_context_data(**kwargs)
+        loaded_page=self.object
+        request=self.request
+        favorite_id=request.session.get("favorite_ses")
+        context["is_favorite"]=favorite_id==str(loaded_page.id)
+        return context
 class FavoriteView(View):
       def post(self,request):
           favorite_id=request.POST["favorite_input"]
