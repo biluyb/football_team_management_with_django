@@ -1,7 +1,7 @@
 import re
 from typing import Any
 from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import FanForm,RegisterForm
 from .models import Squad, Matches,Table,Fans,FanPicture
@@ -116,11 +116,15 @@ def loginPage(request):
 
         if user is not None:
             login(request,user)
-            return HttpResponseRedirect("/fan")
+            return HttpResponseRedirect("/fan_list")
         else:
             messages.info(request,'"incorrect username or password"')
     context = {}
     return render (request,"chemnaFC/login.html",context)
+
+def logoutPage(request):
+    logout(request)
+    return redirect('login_page')
       
 def forgot(request):
     return render (request,"chemnaFC/forgot.html") 

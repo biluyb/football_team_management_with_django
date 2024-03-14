@@ -15,5 +15,6 @@ urlpatterns = [
    path ("squad/<str:player>", views.players_information, name= "players_information"),
    path("login",views.loginPage, name ="login_page"),
    path("signup",views.signup, name ="register_page"),
+   path("logout",views.logoutPage, name ="logout_page"),
    path("forgot",views.forgot, name ="forget_page"),
 ]

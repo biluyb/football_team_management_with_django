@@ -53,6 +53,8 @@
 
 <div class="container">
   <ul class="fan-list">
+    <p> <a href="{% url "logout_page" %}">logout</a><p>
+      <p>hello {{request.user}}</p>
     {% for fan in fan_list %}
     <li class="fan-item">
       <a href="{% url 'single_fan_page' fan.pk %}" class="fan-link">
