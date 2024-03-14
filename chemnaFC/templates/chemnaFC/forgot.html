@@ -6,11 +6,11 @@
 <form action="/">
     {% csrf_token %}
     {{form.as_p}}
-    <lable name="user_name">username</lable></br>
+    {% comment %} <lable name="user_name">username</lable></br>
     <input type="text"></br>
     <lable name="email">email</lable></br>
     <input type="text" ></br>
-    <button type="submit">submit</button></br>
+    <button type="submit">submit</button></br> {% endcomment %}
 </form>
 
 {% endblock content %}
