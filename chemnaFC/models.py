@@ -13,7 +13,6 @@ class Squad(models.Model):
     pname = models.CharField(max_length=100)
     page = models.IntegerField()
     pposition = models.ManyToManyField(Position)
-    # pfoot = models.CharField(max_length=50)
     prating = models.FloatField()
     
     def __str__(self):
@@ -44,7 +43,6 @@ class Matches(models.Model):
     def __str__(self):
         return f"{self.club_name} ({self.date})"
 
-
 class Table(models.Model):
    club_name= models.OneToOneField(Clubs,  on_delete=models.CASCADE, null= True)
    point = models.IntegerField()
@@ -63,7 +61,6 @@ class Table(models.Model):
    
 class FanPicture(models.Model) :
     fan_picture=models.ImageField(upload_to="images")
-
 class Fans(models.Model):
     fan_picture=models.FileField(upload_to="images", null=True)
     name = models.CharField(max_length=100)
@@ -72,7 +69,6 @@ class Fans(models.Model):
     email = models.EmailField()
     password = models.CharField(max_length=100)
     
-
     def __str__(self):
         return f"{self.name} ({self.fan_level})"
     

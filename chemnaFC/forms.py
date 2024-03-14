@@ -1,29 +1,12 @@
-import re
 from django import forms
 from .models import Fans,FanPicture
 from django.contrib.auth.models import User
-# class FansForm(forms.ModelForm):
-#     fan_picture=forms.FileField( null=True)
-#     name = forms.CharField(max_length=100)
-#     gender = forms.ChoiceField(choices=(('M', 'Male'), ('F', 'Female')), widget=forms.RadioSelect)
-#     fan_level = forms.ChoiceField(choices=(('A', "level3"), ('B', "level2"), ('C', "Topfan")))
-#     email = forms.EmailField()
-#     password = forms.CharField(widget=forms.PasswordInput)
-#     confirm_password = forms.CharField(widget=forms.PasswordInput)
+from django.contrib.auth.forms import UserCreationForm
 
-# class FansForm(forms.ModelForm):
-#     class Meta:
-#         model = Fans
-#         fields = "__all__"
 class FanForm(forms.ModelForm):
     confirm_password = forms.CharField(widget=forms.PasswordInput)
     class Meta:
         model= Fans
-        fields="__all__"
-
-class FansPictureForm(forms.ModelForm):
-    class Meta:
-        model=FanPicture
         fields="__all__"
 
         labels ={
@@ -36,6 +19,14 @@ class FansPictureForm(forms.ModelForm):
                 "max_length":"Your Name is Too Long"
             }
         }
-class LoginForm(forms.Form):
-    username=forms.CharField()
-    password=forms.CharField(widget=forms.PasswordInput)
+class FansPictureForm(forms.ModelForm):
+    class Meta:
+        model=FanPicture
+        fields="__all__"
+class RegisterForm(UserCreationForm):
+    # email = forms.EmailField(required=True)
+
+    class Meta:
+        model=User
+        fields =["username","email", "password1","password2"]
+        # fields="__all__"

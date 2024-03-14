@@ -129,5 +129,3 @@ MEDIA_ROOT = BASE_DIR / "upload"
 MEDIA_URL = "/user-media/"
 
 SESSION_COOKIE_DEAD = 1200
-
-

@@ -4,16 +4,17 @@
 
 {% block content %}
 
-<form action="{% url "match_page" %}" method="POST">
+<form action=""  method="POST">
     {% csrf_token %}
-    {{form.as_p}}
-    {% comment %} <lable name="user_name">user name</lable></br>
-    <input type="text" name="name"></br>
-    <lable name="password">password</lable></br>
+    <label> username </lable></br>
+    <input type="text" name="username">   </br>
+    <label> password </lable></br>
     <input type="text" name="password"></br>
-     {% endcomment %}
-     <button type="submit">LOGIN</button>
+    <input type="submit" value="login"></br>
+    {% for message in messages %}
+    <p>{{message}}</p>
+    
+    {% endfor %}
 </form>
- <p><a href="{% url 'forgot_page' %}">forgot password ?</a></p>
-
+<p>dont have an account ?<a href="{% url "register_page" %}">sign up</a> </p> 
 {% endblock content %}
