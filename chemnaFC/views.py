@@ -161,5 +161,5 @@ def login(request):
 
 
 
-# def forgot(request):
-#     return render (request,"chemnaFC/forgot.html")
+def forgot(request):
+    return render (request,"chemnaFC/forgot.html") 
