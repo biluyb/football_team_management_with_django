@@ -1,90 +1,142 @@
 {% extends "base.html" %}
-
-{% block title %}Chemna Football Club{% endblock %}
+{% load static %}
 
 {% block content %}
-<header>
-{% include "chemnaFC/header/header.html" %}
-</header>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-    }
+  <header>{% include "chemnaFC/header/header.html" %}</header>
 
-    .container {
-        max-width: 960px;
-        margin: 0 auto;
-        padding: 20px;
-    }
+  <ul class="navigation">
+    <li><a href="{% url 'match_page' %}">Get Ticket</a></li>
+    <li><a href="{% url 'fan_page' %}">Register for Fan</a></li>
+  </ul>
 
-    .home-link {
-        display: inline-block;
-        padding: 12px 24px;
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        text-decoration: none;
-        transition: background-color 0.2s ease-in-out;
-        font-size: 16px;
-        text-transform: uppercase;
-    }
+  <div class="container">
+    <p>
+      Welcome to Chemna Football Club (CFC), a dynamic and passionate football team
+      dedicated to excellence on and off the field. Founded in [insert year], CFC
+      has grown to become one of the most respected and successful football clubs in
+      the region.
+    </p>
 
-    .home-link:hover {
-        background-color: #45a049;
-    }
+    <img src="{% static "chemnaFC/images/stadium.jpg" %}" alt="shaw" />
 
-    h2 {
-        text-align: center;
-        color: #333;
-        font-size: 24px;
-        margin-top: 40px;
-        text-transform: uppercase;
-    }
+    <p>
+      At CFC, we are driven by a strong commitment to teamwork, sportsmanship, and a
+      relentless pursuit of victory. Our players, coaches, and staff embody the true
+      spirit of the game, displaying exceptional skills, determination, and a
+      never-give-up attitude.
+    </p>
 
-    ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-        text-align: center;
-        margin-top: 20px;
-    }
 
-    li {
-        margin-bottom: 10px;
-    }
+    <p>
+      With a rich history of accomplishments, CFC has secured numerous championships
+      and accolades throughout the years. We take pride in our distinctive style of
+      play, combining tactical brilliance, creative flair, and a strong emphasis on
+      player development.
+    </p>
 
-    a {
-        display: block;
-        padding: 10px;
-        text-decoration: none;
-        color: #333;
-        transition: color 0.2s ease-in-out;
-        font-size: 18px;
-    }
+    <img src="{% static "chemnaFC/images/fans.jpg" %}" alt="shaw" />
 
-    li:hover {
-        background-color: #f5f5f5;
-        border-radius: 5px;
-    }
-
-    a:hover {
-        color: #ff4d4d;
-    }
-</style>
-
-<div class="container">
+    <p>
+      Beyond the field, CFC is deeply rooted in the local community, engaging in
+      various outreach programs, charity initiatives, and youth development
+      projects. We believe in using the power of football to inspire and make a
+      positive impact in the lives of others.
+    </p>
     
-    <ul>
-        <li><a href="{% url 'squad_page' %}">Squad</a></li>
-        <li><a href="{% url 'table_page' %}">Table</a></li>
-        <li><a href="{% url 'match_page' %}">Match</a></li>
-        <li><a href="{% url 'fan_page' %}">Fans</a></li>
-    </ul>
-    <p><a class="home-link" href="{% url 'login_page' %}">LOG IN</a></p>
-</div>
+    <img src="{% static "chemnaFC/images/ball.jpg" %}" alt="shaw" />
 
+    <p>
+      Whether you are a dedicated fan, a passionate player, or simply someone who
+      appreciates the beautiful game, we invite you to join us on this incredible
+      journey. Explore our website to stay up-to-date with the latest news,
+      fixtures, player profiles, and exclusive content. Together, let's celebrate
+      the joy and thrill of football with Chemna Football Club.
+    </p>
+  </div>
+
+  <script>
+    // Smooth scrolling for anchor links
+    document.addEventListener('DOMContentLoaded', function() {
+      const anchorLinks = document.querySelectorAll('a[href^="#"]');
+      for (let anchorLink of anchorLinks) {
+        anchorLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetElement = document.querySelector(this.getAttribute('href'));
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop,
+              behavior: 'smooth'
+            });
+          }
+        });
+      }
+    });
+  </script>
+
+  <style>
+    /* Reset default browser styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Background color */
+    body {
+      background-color: #f2f2f2;
+    }
+
+    /* Navigation styles */
+    .navigation {
+      list-style-type: none;
+      padding: 0;
+      margin: 20px 0;
+    }
+
+    .navigation li {
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    .navigation li:last-child {
+      margin-right: 0;
+    }
+
+    .navigation li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      padding: 8px 12px;
+      border-radius: 4px;
+      background-color: #f2f2f2;
+      transition: background-color 0.3s ease;
+    }
+
+    .navigation li a:hover {
+      background-color: #ff5500;
+      color: #fff;
+    }
+
+    /* Container styles */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Image styles */
+    img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    /* Paragraph styles */
+    p {
+      margin-bottom: 20px;
+    }
+  </style>
 {% endblock %}
