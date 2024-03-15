@@ -54,13 +54,13 @@
 </style>
 
 <div id="form">
-  <form method="POST" action="/fan" enctype="multipart/form-data">
+  {% comment %} <form method="POST" action="/fan" enctype="multipart/form-data">
     {% csrf_token %}
     {{form.as_p}}
     {% comment %} <lable> confirm password</lable>
     <input type="text" value="confirm_password"> {% endcomment %}
     <button type="submit">Register</button>
-  </form>
+  </form> {% endcomment %}
 </div>
 <p><a class="home-link" href="{% url 'index_page' %}">Home</a></p>
 
