@@ -1,10 +1,38 @@
+<style>
+    header {
+        background-color: #f2f2f2;
+        padding: 10px;
+        text-align: center;
+    }
+
+    h2 {
+        margin-bottom: 10px;
+    }
+
+    a {
+        text-decoration: none;
+        color: #333;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    li {
+        display: inline-block;
+        margin-right: 10px;
+    }
+</style>
+
 <header>
-   <h2><a href="{% url 'index_page' %}" class="home-link">Chemna Football Club CFC</a></h2>
+    <h2><a href="{% url 'index_page' %}" class="home-link">Chemna Football Club CFC</a></h2>
     <ul>
-        <li> <a href="{% url "table_page" %}">table</li>
-        <li> <a href="{% url "match_page" %}">match</li>
-        <li> <a href="{% url "squad_page" %}">squad</li>
-        <li> <a href="{% url "login_page" %}">login</li>
-        <li> <a href="{% url "fan_page" %}">fan</li>
+        <li> <a href="{% url "table_page" %}">table</a></li>
+        <li> <a href="{% url "match_page" %}">match</a></li>
+        <li> <a href="{% url "squad_page" %}">squad</a></li>
+        <li> <a href="{% url "login_page" %}">login</a></li>
+        <li> <a href="{% url "fan_page" %}">fan</a></li>
     </ul>
 </header>
