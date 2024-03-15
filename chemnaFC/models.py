@@ -57,8 +57,6 @@ class Table(models.Model):
         super(Table, self).save(*args, **kwargs)
    def __str__(self):
        return f"{self.club_name} ({self.point})"
-   
-   
 class FanPicture(models.Model) :
     fan_picture=models.ImageField(upload_to="images")
 class Fans(models.Model):
@@ -71,7 +69,3 @@ class Fans(models.Model):
     
     def __str__(self):
         return f"{self.name} ({self.fan_level})"
-    
-
-   
-

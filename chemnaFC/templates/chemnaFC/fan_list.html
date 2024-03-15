@@ -61,7 +61,10 @@
         <span class="fan-name">{{ fan.name }}</span>: Level ({{ fan.fan_level }})
       </a>
     </li>
+
     {% endfor %}
   </ul>
+  <p><a class="home-link" href="{% url 'index_page' %}">Home</a></p>
+
 </div>
 {% endblock %}

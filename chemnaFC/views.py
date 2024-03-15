@@ -13,6 +13,7 @@ from django.views.generic.edit import CreateView
 
 from django.contrib.auth import  authenticate, login,logout
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def index(request):
@@ -34,6 +35,7 @@ def match(request):
 def players_information(request, player):
     detail = get_object_or_404(Squad, pname=player)
     return render(request, "chemnaFC/players_detail.html", {"detail": detail})
+
 class FansFormViews(CreateView):
     template_name="chemnaFC/fan.html"
     model=Fans
@@ -96,16 +98,19 @@ class FavoriteView(View):
           return HttpResponseRedirect("/fan_list/" + favorite_id)
       
 def signup(request):
-    if request.method == "POST":
-         form = RegisterForm(request.POST)
-         if form.is_valid():
-              form.save()
-              user = form.cleaned_data.get("username")
-              messages.success(request, "account was created for" + user)
-         return HttpResponseRedirect("/login")
+    if request.user.is_authenticated:
+        return redirect("/fan_list")
     else:
-          form = RegisterForm()
-    return render (request,"chemnaFC/register.html",{"form":form})
+        if request.method == "POST":
+            form = RegisterForm(request.POST)
+            if form.is_valid():
+                form.save()
+                user = form.cleaned_data.get("username")
+                messages.success(request, "account was created for " + user)
+            return HttpResponseRedirect("/login")
+        else:
+            form = RegisterForm()
+        return render (request,"chemnaFC/register.html",{"form":form})
 
 def loginPage(request):
     if request.method == "POST":
