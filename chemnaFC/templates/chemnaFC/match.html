@@ -4,17 +4,35 @@
 
 {% block content %}
 <header>
-{% include "chemnaFC/header/header.html" %}
+  {% include "chemnaFC/header/header.html" %}
 </header>
 <style>
-  .team-matches {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
     background-color: #f8f8f8;
+  }
+
+  .team-matches {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
+    animation: slide-up 0.5s ease-in-out;
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .team-matches h3 {
@@ -26,69 +44,52 @@
   }
 
   .team-matches ul {
-    padding-left: 20px;
+    list-style: none;
+    padding: 0;
     margin: 0;
   }
 
   .team-matches li {
-    margin-bottom: 10px;
-    line-height: 1.5;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    transition: background-color 0.3s ease-in-out;
+    margin-bottom: 10px; /* Add margin between match items */
+  }
+
+  .team-matches li:last-child {
+    border-bottom: none;
   }
 
   .team-matches a {
     text-decoration: none;
-    color: #000000;
+    color: #333;
     font-weight: bold;
-    transition: color 0.2s ease-in-out;
   }
 
   .team-matches a:hover {
     color: #ff4d4d;
   }
 
-  .team-matches ul ul {
-    list-style: none;
-    margin-top: 5px;
-    padding-left: 20px;
-  }
-
-  .team-matches ul ul li {
-    margin-bottom: 5px;
+  .team-matches .game-info {
+    margin-left: 20px;
     font-size: 14px;
     color: #666666;
   }
 
-  .team-matches .game-color {
+  .game-color {
     background-color: #f2f2f2;
-    padding: 10px;
     border-radius: 4px;
-    position: relative;
-  }
-
-  .team-matches .game-color:nth-child(even) {
-    background-color: #eaeaea;
-  }
-
-  .team-matches .game-color:before {
-    content: "";
-    position: absolute;
-    width: 10px;
-    height: 100%;
-    top: 0;
-    left: -10px;
-    background-color: #ff4d4d;
-    border-radius: 4px 0 0 4px;
-  }
-
-  .team-matches .game-color:nth-child(even):before {
-    background-color: #00bfff;
   }
 
   .home-link {
-    display: inline-block;
-    padding: 10px 20px;
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    margin: 20px auto;
+    padding: 10px;
     background-color: #4CAF50;
     color: white;
+    text-align: center;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -104,13 +105,20 @@
 <div class="team-matches">
   <h3>Team Matches</h3>
 
-  {% for games in match %}
-    <ul class="game-color">
-      <li>Chemna FC Vs {{ games.club_name|title }}</li>
-      <ul>Stadium: {{ games.stadium|title }}</ul>
-      <ul>Time: {{ games.date|date }}</ul>
-    </ul>
-  {% endfor %}
+  <ul>
+    {% for games in match %}
+    <li class="game-color">
+      <a href="{% url 'single_fan_page' games.pk %}">
+        Chemna FC Vs {{ games.club_name|title }}
+      </a>
+      <div class="game-info">
+        <p>Stadium: {{ games.stadium|title }}</p>
+        <p>Time: {{ games.date|date }}</p>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+
+  <a class="home-link" href="{% url 'index_page' %}">Home</a>
 </div>
-<p><a class="home-link" href="{% url 'index_page' %}">Home</a></p>
 {% endblock %}

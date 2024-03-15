@@ -4,14 +4,20 @@
 
 {% block content %}
 <style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+  }
+
   .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
     background-color: #f8f8f8;
-    font-family: Arial, sans-serif;
   }
 
   .fan-list {
@@ -19,24 +25,23 @@
     padding: 0;
     margin: 0;
     width: 400px; /* Adjust the width as per your preference */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color: #fff;
   }
 
   .fan-item {
-    margin-bottom: 10px;
-    background-color: #fff;
-    border-radius: 8px;
     padding: 10px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid #ddd;
+  }
+
+  .fan-item:last-child {
+    border-bottom: none;
   }
 
   .fan-name {
     font-weight: bold;
     color: #333;
-    transition: color 0.2s ease-in-out;
-  }
-
-  .fan-name:hover {
-    color: #ff0000; /* Change to your desired color on hover */
   }
 
   .fan-level {
@@ -48,23 +53,69 @@
     text-decoration: none;
     color: #337ab7;
     font-weight: bold;
+    transition: color 0.2s ease-in-out;
+  }
+
+  .fan-link:hover {
+    color: #ff0000; /* Change to your desired color on hover */
+  }
+
+  .logout {
+    margin-top: 20px;
+  }
+
+  .logout a {
+    text-decoration: none;
+    color: #fff;
+    background-color: #337ab7;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  .logout a:hover {
+    background-color: #ff0000; /* Change to your desired color on hover */
+  }
+
+  .hello-user {
+    margin-top: 10px;
+    color: #333;
+  }
+
+  .home {
+    margin-top: 20px;
+  }
+
+  .home a {
+    text-decoration: none;
+    color: #337ab7;
+    font-weight: bold;
+    transition: color 0.2s ease-in-out;
+  }
+
+  .home a:hover {
+    color: #ff0000; /* Change to your desired color on hover */
   }
 </style>
+<header>{% include "chemnaFC/header/header.html" %}</header>
+
 
 <div class="container">
   <ul class="fan-list">
-    <p> <a href="{% url "logout_page" %}">logout</a><p>
-      <p>hello {{request.user}}</p>
     {% for fan in fan_list %}
     <li class="fan-item">
       <a href="{% url 'single_fan_page' fan.pk %}" class="fan-link">
         <span class="fan-name">{{ fan.name }}</span>: Level ({{ fan.fan_level }})
       </a>
     </li>
-
     {% endfor %}
   </ul>
-  <p><a class="home-link" href="{% url 'index_page' %}">Home</a></p>
-
+  <div class="logout">
+    <a href="{% url 'logout_page' %}">Logout</a>
+  </div>
+  <p class="hello-user">Hello {{ request.user }}</p>
+  <div class="home">
+    <a href="{% url 'index_page' %}">Home</a>
+  </div>
 </div>
 {% endblock %}

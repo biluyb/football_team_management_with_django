@@ -9,9 +9,11 @@
 
   /* Header styles */
   .header {
-    background-color: #f2f2f2; /* Change this color to your desired background color */
+    background-color: #333; /* Dark background color */
     padding: 10px;
     text-align: center;
+    color: #fff; /* White text color */
+    font-family: Arial, sans-serif;
   }
 
   /* Logo styles */
@@ -34,16 +36,15 @@
   .club-name {
     display: inline-block;
     vertical-align: middle;
-    font-family: Arial, sans-serif;
     font-size: 24px;
-    color: #333;
+    color: #ffcc00; /* Yellow color for club name */
     margin-left: 10px;
     text-decoration: none;
     transition: color 0.3s ease;
   }
 
   .club-name:hover {
-    color: #ff5500;
+    color: #ff9900; /* Lighter orange color on hover */
   }
 
   /* Navigation styles */
@@ -65,12 +66,14 @@
 
   .navigation li a {
     text-decoration: none;
-    color: #333;
-    transition: color 0.3s ease;
+    color: #fff; /* White color for navigation links */
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
   }
 
   .navigation li a:hover {
-    color: #ff5500;
+    background-color: #ff9900; /* Lighter orange background color on hover */
   }
 </style>
 
@@ -80,10 +83,10 @@
   </div>
   <a href="{% url 'index_page' %}" class="club-name">Chemna Football Club CFC</a>
   <ul class="navigation">
-    <li><a href="{% url "table_page" %}">Table</a></li>
-    <li><a href="{% url "match_page" %}">Match</a></li>
-    <li><a href="{% url "squad_page" %}">Squad</a></li>
-    <li><a href="{% url "login_page" %}">Login</a></li>
-    <li><a href="{% url "fan_page" %}">Fan</a></li>
+    <li><a href="{% url "table_page" %}" style="background-color: #ff0000;">Table</a></li> <!-- Red color for Table -->
+    <li><a href="{% url "match_page" %}" style="background-color: #00ff00;">Match</a></li> <!-- Green color for Match -->
+    <li><a href="{% url "squad_page" %}" style="background-color: #0000ff;">Squad</a></li> <!-- Blue color for Squad -->
+    <li><a href="{% url "fan_page" %}" style="background-color: #ff00ff;">Fan</a></li> <!-- Purple color for Fan -->
+    <li><a href="{% url "login_page" %}" style="background-color: #ffff00;">Login</a></li> <!-- Yellow color for Login -->
   </ul>
 </header>

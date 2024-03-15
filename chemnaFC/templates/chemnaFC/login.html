@@ -1,20 +1,91 @@
+<!-- login.html -->
+
 {% extends "base.html" %}
 
-{% block title %}login{% endblock title %}
+{% block title %}Login{% endblock title %}
 
 {% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f1f1f1;
+    }
 
-<form action=""  method="POST">
-    {% csrf_token %}
-    <label> username </lable></br>
-    <input type="text" name="username">   </br>
-    <label> password </lable></br>
-    <input type="text" name="password"></br>
-    <input type="submit" value="login"></br>
-    {% for message in messages %}
-    <p>{{message}}</p>
-    
-    {% endfor %}
-</form>
-<p>dont have an account ?<a href="{% url "register_page" %}">sign up</a> </p> 
+    .container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    form {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="submit"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    input[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+
+    .error-message {
+        color: red;
+        margin-top: 5px;
+    }
+
+    .signup-link {
+        text-align: center;
+    }
+
+    .signup-link a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    .signup-link a:hover {
+        text-decoration: underline;
+    }
+</style>
+<header>{% include "chemnaFC/header/header.html" %}</header>
+
+<div class="container">
+    <h2>Login</h2>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <label for="username">Username</label><br>
+        <input type="text" id="username" name="username"><br>
+        <label for="password">Password</label><br>
+        <input type="password" id="password" name="password"><br>
+        <input type="submit" value="Login"><br>
+        {% for message in messages %}
+        <p class="error-message">{{ message }}</p>
+        {% endfor %}
+    </form>
+    <p class="signup-link">Don't have an account? <a href="{% url "register_page" %}">Sign up</a></p>
+</div>
 {% endblock content %}

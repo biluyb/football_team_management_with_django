@@ -1,25 +1,50 @@
+{% load static %}
 <style>
-    /* Add your custom CSS styles here */
-    
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+
+    header {
+      background-color: #2196F3;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin: 0;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
     form {
-      margin: 20px;
+      margin: 20px auto;
       padding: 20px;
       border: 1px solid #ccc;
-      background-color: #f5f5f5;
-      width: 300px;
+      background-color: #fff;
+      width: 350px;
       max-width: 100%;
       box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
       border-radius: 4px;
     }
-    
+
     label {
       display: block;
       margin-bottom: 10px;
       font-weight: bold;
     }
-    
+
     input[type="text"],
-    input[type="password"] {
+    input[type="password"],
+    input[type="email"] {
       width: 100%;
       padding: 10px;
       margin-bottom: 15px;
@@ -28,7 +53,7 @@
       box-sizing: border-box;
       font-size: 14px;
     }
-    
+
     button[type="submit"] {
       display: inline-block;
       padding: 10px 20px;
@@ -42,40 +67,49 @@
       border-radius: 4px;
       transition: background-color 0.3s ease;
     }
-    
+
     button[type="submit"]:hover {
       background-color: #45a049;
     }
-    
+
     p.login-link {
       margin-top: 10px;
       font-size: 14px;
+      text-align: center;
     }
-    
+
     a {
       color: #0000FF;
       text-decoration: none;
     }
-    
+
     a:hover {
       text-decoration: underline;
     }
-</style>
+  </style>
+</head>
+<body>
 
-{% extends "base.html" %}
+  <header>
+    {% include "chemnaFC/header/header.html" %}
+  </header>
 
-{% block title %}sign-up{% endblock title %}
+  <main>
 
-{% block content %}
+    {% block content %}
 
-<form action="" method="POST">
-    {% csrf_token %}
-    {% for field in form  %}
-    <label>{{field.label}}</label><br>
-    {{field}}<br>
-    {% endfor %}
-    <button type="submit">Sign Up</button>
-</form>
-<p class="login-link">Already have an account? <a href="{% url 'login_page' %}">Login</a></p>
+      <form action="" method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+          <label>{{ field.label }}</label><br>
+          {{ field }}<br>
+        {% endfor %}
+        <button type="submit">Sign Up</button>
+      </form>
+      <p class="login-link">Already have an account? <a href="{% url 'login_page' %}">Login</a></p>
 
-{% endblock content %}
+    {% endblock content %}
+
+  </main>
+
+  <script src="{% static 'script.js' %}"></script>

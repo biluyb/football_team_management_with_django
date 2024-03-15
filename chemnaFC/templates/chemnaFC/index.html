@@ -2,141 +2,129 @@
 {% load static %}
 
 {% block content %}
-  <header>{% include "chemnaFC/header/header.html" %}</header>
+<style>
+  /* Add your CSS styles here */
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  ul li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 4px;
+    background-color: #f2f2f2;
+    transition: background-color 0.3s ease;
+  }
+  
+  p {
+    margin-bottom: 20px;
+    text-align: justify;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+  }
 
-  <ul class="navigation">
-    <li><a href="{% url 'match_page' %}">Get Ticket</a></li>
-    <li><a href="{% url 'fan_page' %}">Register for Fan</a></li>
-  </ul>
+  /* Additional styles for a more modern look */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-  <div class="container">
-    <p>
-      Welcome to Chemna Football Club (CFC), a dynamic and passionate football team
-      dedicated to excellence on and off the field. Founded in [insert year], CFC
-      has grown to become one of the most respected and successful football clubs in
-      the region.
-    </p>
+  .container {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
 
-    <img src="{% static "chemnaFC/images/stadium.jpg" %}" alt="shaw" />
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
 
-    <p>
-      At CFC, we are driven by a strong commitment to teamwork, sportsmanship, and a
-      relentless pursuit of victory. Our players, coaches, and staff embody the true
-      spirit of the game, displaying exceptional skills, determination, and a
-      never-give-up attitude.
-    </p>
+  .intro {
+    text-align: justify;
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+
+  .feature-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+</style>
+
+<header>{% include "chemnaFC/header/header.html" %}</header>
 
 
-    <p>
-      With a rich history of accomplishments, CFC has secured numerous championships
-      and accolades throughout the years. We take pride in our distinctive style of
-      play, combining tactical brilliance, creative flair, and a strong emphasis on
-      player development.
-    </p>
 
-    <img src="{% static "chemnaFC/images/fans.jpg" %}" alt="shaw" />
+<div class="container">
+  <h1>Welcome to Chemna Football Club (CFC)</h1>
+  <p class="intro">
+    A dynamic and passionate football team dedicated to excellence on and off the field. Founded in [insert year], CFC has grown to become one of the most respected and successful football clubs in the region.
+  </p>
 
-    <p>
-      Beyond the field, CFC is deeply rooted in the local community, engaging in
-      various outreach programs, charity initiatives, and youth development
-      projects. We believe in using the power of football to inspire and make a
-      positive impact in the lives of others.
-    </p>
-    
-    <img src="{% static "chemnaFC/images/ball.jpg" %}" alt="shaw" />
+  <img src="{% static "chemnaFC/images/stadium.jpg" %}" alt="Stadium" class="feature-img" />
 
-    <p>
-      Whether you are a dedicated fan, a passionate player, or simply someone who
-      appreciates the beautiful game, we invite you to join us on this incredible
-      journey. Explore our website to stay up-to-date with the latest news,
-      fixtures, player profiles, and exclusive content. Together, let's celebrate
-      the joy and thrill of football with Chemna Football Club.
-    </p>
-  </div>
+  <p>
+    At CFC, we are driven by a strong commitment to teamwork, sportsmanship, and a relentless pursuit of victory. Our players, coaches, and staff embody the true spirit of the game, displaying exceptional skills, determination, and a never-give-up attitude.
+  </p>
 
-  <script>
-    // Smooth scrolling for anchor links
-    document.addEventListener('DOMContentLoaded', function() {
-      const anchorLinks = document.querySelectorAll('a[href^="#"]');
-      for (let anchorLink of anchorLinks) {
-        anchorLink.addEventListener('click', function(e) {
-          e.preventDefault();
-          const targetElement = document.querySelector(this.getAttribute('href'));
-          if (targetElement) {
-            window.scrollTo({
-              top: targetElement.offsetTop,
-              behavior: 'smooth'
-            });
-          }
-        });
-      }
-    });
-  </script>
+  <p>
+    With a rich history of accomplishments, CFC has secured numerous championships and accolades throughout the years. We take pride in our distinctive style of play, combining tactical brilliance, creative flair, and a strong emphasis on player development.
+  </p>
 
-  <style>
-    /* Reset default browser styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  <img src="{% static "chemnaFC/images/fans.jpg" %}" alt="Fans" class="feature-img" />
 
-    /* Background color */
-    body {
-      background-color: #f2f2f2;
-    }
+  <p>
+    Beyond the field, CFC is deeply rooted in the local community, engaging in various outreach programs, charity initiatives, and youth development projects. We believe in using the power of football to inspire and make a positive impact in the lives of others.
+  </p>
 
-    /* Navigation styles */
-    .navigation {
-      list-style-type: none;
-      padding: 0;
-      margin: 20px 0;
-    }
+  <img src="{% static "chemnaFC/images/ball.jpg" %}" alt="Ball" class="feature-img" />
 
-    .navigation li {
-      display: inline-block;
-      margin-right: 10px;
-    }
+  <p>
+    Whether you are a dedicated fan, a passionate player, or simply someone who appreciates the beautiful game, we invite you to join us on this incredible journey. Explore our website to stay up-to-date with the latest news, fixtures, player profiles, and exclusive content. Together, let's celebrate the joy and thrill of football with Chemna Football Club.
+  </p>
+</div>
 
-    .navigation li:last-child {
-      margin-right: 0;
-    }
-
-    .navigation li a {
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
-      padding: 8px 12px;
-      border-radius: 4px;
-      background-color: #f2f2f2;
-      transition: background-color 0.3s ease;
-    }
-
-    .navigation li a:hover {
-      background-color: #ff5500;
-      color: #fff;
-    }
-
-    /* Container styles */
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-      background-color: #fff;
-      border-radius: 4px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Image styles */
-    img {
-      max-width: 100%;
-      height: auto;
-      margin-bottom: 20px;
-    }
-
-    /* Paragraph styles */
-    p {
-      margin-bottom: 20px;
-    }
-  </style>
 {% endblock %}
