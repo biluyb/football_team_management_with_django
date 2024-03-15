@@ -1,4 +1,57 @@
-{% extends "base.html" %}
-{% block content %}
-   wellcom
-{% endblock content %}
+<footer class="footer">
+  <div class="footer-content">
+    <p>Contact: contact@chemnafc.com</p>
+    <ul class="footer-links">
+      <li>Privacy Policy</a></li>
+      <li>Terms & Conditions</a></li>
+    </ul>
+  </div>
+</footer>
+
+<style>
+  /* Footer styles */
+  .footer {
+    background-color: #333; /* Dark background color */
+    color: #fff; /* White text color */
+    padding: 10px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+
+  .footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .footer p,
+  .footer ul {
+    margin: 0;
+  }
+
+  .footer-links {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+
+  .footer-links li {
+    margin-right: 10px;
+  }
+
+  .footer-links li:last-child {
+    margin-right: 0;
+  }
+
+  .footer-links a {
+    text-decoration: none;
+    color: #fff; /* White color for links */
+    transition: color 0.3s ease;
+  }
+
+  .footer-links a:hover {
+    color: #ff9900; /* Lighter orange color on hover */
+  }
+</style>
