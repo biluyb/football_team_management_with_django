@@ -83,7 +83,7 @@
         <input type="password" id="password" name="password"><br>
         <input type="submit" value="Login"><br>
         {% for message in messages %}
-        <p class="error-message">{{ message }}</p>
+        <p>{{ message }}</p>
         {% endfor %}
     </form>
     <p class="signup-link">Don't have an account? <a href="{% url "register_page" %}">Sign up</a></p>
