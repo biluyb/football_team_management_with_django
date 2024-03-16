@@ -4,6 +4,7 @@
 
 {% block content %}
 <style>
+  /* Your existing CSS styles */
   body {
     margin: 0;
     padding: 0;
@@ -20,7 +21,7 @@
     background-color: #f8f8f8;
   }
 
-  .fan-list {
+  .chat {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -28,36 +29,48 @@
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     background-color: #fff;
+    overflow-y: auto; /* Enable scrolling for long chats */
+    max-height: 500px; /* Limit the height of the chat */
   }
 
-  .fan-item {
+  .message {
     padding: 10px;
     border-bottom: 1px solid #ddd;
+    display: flex;
+    align-items: flex-start;
   }
 
-  .fan-item:last-child {
+  .message:last-child {
     border-bottom: none;
   }
 
-  .fan-name {
+  .message .fan-picture {
+    width: 40px; /* Adjust the size of the circular image */
+    height: 40px; /* Adjust the size of the circular image */
+    border-radius: 50%; /* Makes the image circular */
+    overflow: hidden; /* Ensures the image stays within the circle */
+    margin-right: 10px; /* Adds spacing between image and name */
+  }
+
+  .message .fan-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Prevents the image from stretching */
+  }
+
+  .message .fan-name {
     font-weight: bold;
     color: #333;
   }
 
-  .fan-level {
-    color: #888;
-    font-style: italic;
+  .message .fan-text {
+    color: #333;
   }
 
-  .fan-link {
-    text-decoration: none;
-    color: #337ab7;
-    font-weight: bold;
-    transition: color 0.2s ease-in-out;
-  }
-
-  .fan-link:hover {
-    color: #ff0000; /* Change to your desired color on hover */
+  .message .fan-time {
+    margin-left: auto; /* Push the time to the right */
+    font-size: 12px;
+    color: #999;
   }
 
   .logout {
@@ -99,14 +112,21 @@
 </style>
 <header>{% include "chemnaFC/header/header.html" %}</header>
 
-
 <div class="container">
-  <ul class="fan-list">
+  <ul class="chat">
     {% for fan in fan_list %}
-    <li class="fan-item">
-      <a href="{% url 'single_fan_page' fan.pk %}" class="fan-link">
-        <span class="fan-name">{{ fan.name }}</span>: Level ({{ fan.fan_level }})
-      </a>
+    <li class="message">
+      <div class="fan-picture">
+            <a href="{% url 'single_fan_page' fan.pk %}"><img src="{{ fan.fan_picture.url }}" alt="fan image"></a>
+        
+      </div>
+      <div>
+        <span class="fan-name">
+                      <a href="{% url 'single_fan_page' fan.pk %}">{{ fan.name }}</a>
+          </span>
+        <p class="fan-text">{{fan.fan_level}}</p>
+        <span class="fan-time">12:34 PM</span>
+      </div>
     </li>
     {% endfor %}
   </ul>

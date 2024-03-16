@@ -4,24 +4,19 @@
 
 {% block content %}
 <style>
-     .home-link {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background-color 0.2s ease-in-out;
+  /* Global Styles */
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
   }
+
+  /* Fan Details Styles */
   .fan-details {
     list-style: none;
-    padding: 0;
-    margin: 0;
-    font-family: Arial, sans-serif;
     max-width: 400px;
-    margin: 0 auto;
+    margin: 20px auto;
     background-color: #f8f8f8;
     border-radius: 8px;
     padding: 20px;
@@ -40,21 +35,24 @@
     margin-bottom: 10px;
   }
 
+  /* Favorite Message Styles */
   .favorite-message {
     font-weight: bold;
     color: green;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 20px;
   }
 
   .favorite-icon {
     margin-right: 5px;
   }
 
+  /* Favorite Form Styles */
   .favorite-form {
-    margin-top: 20px;
     text-align: center;
+    margin-top: 20px;
   }
 
   .favorite-form button {
@@ -70,28 +68,47 @@
   .favorite-form button:hover {
     background-color: #135589;
   }
+
+  /* Home Link Styles */
+  .home-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out;
+    margin-top: 20px;
+    display: block;
+    text-align: center;
+  }
 </style>
 
 <ul class="fan-details">
-  {% comment %} <li><img src="{{ picture.fan_picture.url }}"></li> {% endcomment %}
-  <li><img src="{{ single_fan.fan_picture.url }}"></li>
-  <li>Fan Name: {{ single_fan.name }}</li>
-  <li>Sex: {{ single_fan.gender }}</li>
-  <li>Email: {{ single_fan.email }}</li>
-  <li>Level: {{ single_fan.fan_level }}</li>
-  <li>Password: {{ single_fan.password }}</li>
+  <li><img src="{{ single_fan.fan_picture.url }}" alt="Fan Picture"></li>
+  <li><strong>Fan Name:</strong> {{ single_fan.name }}</li>
+  <li><strong>Sex:</strong> {{ single_fan.gender }}</li>
+  <li><strong>Email:</strong> {{ single_fan.email }}</li>
+  <li><strong>Level:</strong> {{ single_fan.fan_level }}</li>
+  <li><strong>Password:</strong> {{ single_fan.password }}</li>
 </ul>
 
 {% if is_favorite %}
-  <p class="favorite-message"><i class="fas fa-heart favorite-icon"></i>Top fan</p>
+  <p class="favorite-message">
+    <i class="fas fa-heart favorite-icon"></i>Top fan
+  </p>
 {% else %}
   <form action="/fan_list/favorite" method="POST" class="favorite-form">
     {% csrf_token %}
     <input type="hidden" name="favorite_input" value="{{ single_fan.id }}">
-    <button>Top Fan</button>
+    <button>Make Top Fan</button>
   </form>
 {% endif %}
 
+<p><a class="home-link" href="{% url 'fan_list_page' %}">Back to Fan List</a></p>
+
 <!-- Add the Font Awesome library -->
 <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
-<p><a class="home-link" href="{% url 'fan_list_page' %}">FAN'S</a></p>{% endblock %}
+{% endblock %}
