@@ -8,12 +8,13 @@
 </header>
 <style>
  #form {
+   
     max-width: 400px;
-    margin: 0 auto;
+    margin: 15px auto 15px auto ;
     padding: 20px;
     background-color: #f7f7f7;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 15px;
   }
 
   label {
@@ -62,6 +63,6 @@
     <button type="submit">Register</button>
   </form>
 </div>
-<p><a class="home-link" href="{% url 'index_page' %}">Home</a></p>
+<footer>{% include "chemnaFC/header/footer.html" %}</footer>
 
 {% endblock %}
