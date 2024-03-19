@@ -14,7 +14,9 @@ from django.views.generic.edit import CreateView
 from django.contrib.auth import  authenticate, login,logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from .decorators import unauthenticated_user
 # Create your views here.
+@unauthenticated_user
 def index(request):
     return render(request , "chemnaFC/index.html")
 
@@ -120,7 +122,7 @@ def loginPage(request):
 
         if user is not None:
             login(request,user)
-            return HttpResponseRedirect("/fan_list")
+            return redirect("/fan_list")
         else:
             messages.info(request,'"incorrect username or password"')
     context = {}
