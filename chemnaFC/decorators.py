@@ -1,10 +1,11 @@
 from django.http import HttpResponse
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
+from .import views
 
 def unauthenticated_user(view_func):
     def wrapper_func(request, *args,**kwargs):
-        if request.user.is_authenticated():
-            return redirect("")
+        if request.user.is_authenticated:
+            return render(request,"chemnaFC/index.html")
         else:
             return view_func(request,*args,**kwargs)
     return wrapper_func
