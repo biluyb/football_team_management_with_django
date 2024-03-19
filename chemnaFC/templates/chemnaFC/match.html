@@ -114,6 +114,8 @@
       <div class="game-info">
         <p>Stadium: {{ games.stadium|title }}</p>
         <p>Time: {{ games.date|date }}</p>
+        <p><a href="{% url "ticket_page" %}">get ticket </a></p>
+
       </div>
     </li>
     {% endfor %}

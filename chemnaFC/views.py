@@ -14,6 +14,7 @@ from django.views.generic.edit import CreateView
 from django.contrib.auth import  authenticate, login,logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from .decorators import unauthenticated_user
 # Create your views here.
 @unauthenticated_user
@@ -33,10 +34,17 @@ def match(request):
     match = Matches.objects.all()
     return render(request , "chemnaFC/match.html", {"match":match})
 
+@login_required(login_url='/login')
+def ticket(request):
+    return render(request , "chemnaFC/ticket.html")
+
+def fanPage(request):
+    return render(request , "chemnaFC/fanPage.html")
+
 def players_information(request, player):
     detail = get_object_or_404(Squad, pname=player)
     return render(request, "chemnaFC/players_detail.html", {"detail": detail})
-
+@method_decorator(login_required(login_url='/login'),name='dispatch')
 class FansFormViews(CreateView):
     template_name="chemnaFC/fan.html"
     model=Fans
@@ -98,10 +106,8 @@ class FavoriteView(View):
           request.session["favorite_ses"]=favorite_id
           return HttpResponseRedirect("/fan_list/" + favorite_id)
       
+@unauthenticated_user    
 def signup(request):
-    if request.user.is_authenticated:
-        return redirect("/fan_list")
-    else:
         if request.method == "POST":
             form = RegisterForm(request.POST)
             if form.is_valid():
@@ -122,7 +128,11 @@ def loginPage(request):
 
         if user is not None:
             login(request,user)
-            return redirect("/fan_list")
+            next_url = request.GET.get('next')
+            if next_url:
+                return redirect(next_url)
+            else:
+                return redirect("/")
         else:
             messages.info(request,'"incorrect username or password"')
     context = {}

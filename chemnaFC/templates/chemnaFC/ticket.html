@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<style>
+  /* Add your CSS styles here */
+  .ticket-container {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+  }
+  
+  .ticket-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .ticket-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .ticket-subtitle {
+    font-size: 16px;
+    color: #888;
+  }
+  
+  .ticket-info {
+    margin-bottom: 20px;
+  }
+  
+  .ticket-info-label {
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .ticket-info-value {
+    margin-left: 5px;
+  }
+  
+  .ticket-barcode {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .ticket-barcode-image {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .ticket-footer {
+    text-align: center;
+  }
+  
+  .ticket-footer-text {
+    font-size: 14px;
+    color: #888;
+    margin-top: 10px;
+  }
+</style>
+
+<div class="ticket-container">
+  <div class="ticket-header">
+    <h2 class="ticket-title">Match Ticket</h2>
+    <p class="ticket-subtitle">Chemna Football Club</p>
+  </div>
+
+  <div class="ticket-info">
+    <p>
+      <span class="ticket-info-label">Match Date:</span>
+      <span class="ticket-info-value">April 1, 2024</span>
+    </p>
+    <p>
+      <span class="ticket-info-label">Kickoff Time:</span>
+      <span class="ticket-info-value">7:00 PM</span>
+    </p>
+    <p>
+      <span class="ticket-info-label">Seat:</span>
+      <span class="ticket-info-value">Section C, Row 10, Seat 25</span>
+    </p>
+  </div>
+
+  <div class="ticket-barcode">
+    <img src="{% static 'chemnaFC/images/barcode.png' %}" alt="Ticket Barcode" class="ticket-barcode-image">
+  </div>
+
+  <div class="ticket-footer">
+    <p class="ticket-footer-text">Enjoy the match!</p>
+  </div>
+</div>
+{% endblock %}
