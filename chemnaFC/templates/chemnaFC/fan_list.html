@@ -113,29 +113,27 @@
 <header>{% include "chemnaFC/header/header.html" %}</header>
 
 <div class="container">
+
+
   <ul class="chat">
     {% for fan in fan_list %}
-    <li class="message">
-      <div class="fan-picture">
-            <a href="{% url 'single_fan_page' fan.pk %}"><img src="{{ fan.fan_picture.url }}" alt="fan image"></a>
-        
-      </div>
-      <div>
-        <span class="fan-name">
-                      <a href="{% url 'single_fan_page' fan.pk %}">{{ fan.name }}</a>
+      <li class="message">
+        <div class="fan-picture">
+          <a href="{% url 'single_fan_page' fan.pk %}"><img src="{{ fan.fan_picture.url }}" alt="fan image"></a>
+        </div>
+        <div>
+          <span class="fan-name">
+            {% if fan.user == request.user %}
+              <a href="{% url 'profile_page' %}">{{ fan.name }}</a>
+            {% else %}
+              <a href="{% url 'single_fan_page' fan.pk %}">{{ fan.name }}</a>
+            {% endif %}
           </span>
-        <p class="fan-text">{{fan.fan_level}}</p>
-        <span class="fan-time">12:34 PM</span>
-      </div>
-    </li>
+          <p class="fan-text">{{ fan.fan_level }}</p>
+          <span class="fan-time">12:34 PM</span>
+        </div>
+      </li>
     {% endfor %}
   </ul>
-  <div class="logout">
-    <a href="{% url 'logout_page' %}">Logout</a>
-  </div>
-  <p class="hello-user">Hi! {{ request.user }}</p>
-  <div class="home">
-    <a href="{% url 'index_page' %}">Home</a>
-  </div>
 </div>
 {% endblock %}

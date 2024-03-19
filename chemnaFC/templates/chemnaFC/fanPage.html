@@ -1,1 +1,59 @@
-<p><a href="{% url "fan_page" %}" >Register fan form </a></p>
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<style>
+  /* Add your CSS styles here */
+  .fan-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #222;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    color: #fff;
+  }
+  
+  .fan-title {
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .fan-description {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .fan-link {
+    text-align: center;
+    margin-top: 40px;
+  }
+  
+  .fan-link a {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 4px;
+    background-color: #ff4a4a;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .fan-link a:hover {
+    background-color: #ff1a1a;
+  }
+</style>
+
+<div class="fan-container">
+  <h2 class="fan-title">Join the Fan Community</h2>
+
+  <p class="fan-description">Be part of our passionate fan community and stay updated with the latest news, events, and exclusive content!</p>
+
+  <div class="fan-link">
+    <a href="{% url 'fan_page' %}">Register as a Fan</a>
+  </div>
+</div>
+{% endblock %}

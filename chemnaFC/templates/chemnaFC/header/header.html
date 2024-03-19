@@ -89,6 +89,11 @@
     <li><a href="{% url 'match_page' %}">Match</a></li>
     <li><a href="{% url 'squad_page' %}">Squad</a></li>
     <li><a href="{% url 'fanPage' %}">Fan</a></li>
-    <li><a href="{% url 'login_page' %}">Login</a></li>    <li><a href="{% url 'logout_page' %}">logout</a></li>
+  {% if user.is_authenticated %}
+    <li>{{request.user}}</li>
+    {% else %}
+    <li><a href="{% url 'login_page' %}">Login</a></li>
+    {% endif %}   
+    <li><a href="{% url 'logout_page' %}">Logout</a></li>
   </ul>
 </header>

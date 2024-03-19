@@ -15,7 +15,7 @@ from django.contrib.auth import  authenticate, login,logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from .decorators import unauthenticated_user
+from .decorators import unauthenticated_user,not_fan
 # Create your views here.
 @unauthenticated_user
 def index(request):
@@ -38,6 +38,7 @@ def match(request):
 def ticket(request):
     return render(request , "chemnaFC/ticket.html")
 
+@not_fan
 def fanPage(request):
     return render(request , "chemnaFC/fanPage.html")
 
