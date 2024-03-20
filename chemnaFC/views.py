@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import FanForm,RegisterForm
-from .models import Squad, Matches,Table,Fans,FanPicture
+from .models import Adress, Position, Squad, Matches,Table,Fans,FanPicture,Clubs
 
 from django.views import View
 from django.views.generic import DetailView, ListView
@@ -33,6 +33,22 @@ def table(request):
 def match(request):
     match = Matches.objects.all()
     return render(request , "chemnaFC/match.html", {"match":match})
+
+def adminPage(request):
+    squad = Squad.objects.all()
+    match = Matches.objects.all()
+    table=Table.objects.all()
+    clubs = Clubs.objects.all()
+    adress =Adress.objects.all()
+    position = Position.objects.all()
+    return render(request,"chemnaFC/dashBoard.html",{
+        "squad":squad,
+        "match":match,
+        "table":table,
+        "clubs":clubs,
+        "adress":adress,
+        "position":position
+        })
 
 @login_required(login_url='/login')
 def ticket(request):
