@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+    <h2>Positions</h2>
+    <table>
+        <tr>
+            <th>Position Name</th>
+            <th>Foot</th>
+        </tr>
+        {% for position in positions %}
+        <tr>
+            <td>{{ position.position_name }}</td>
+            <td>{{ position.foot }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Squads</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Positions</th>
+            <th>Rating</th>
+        </tr>
+        {% for squad in squads %}
+        <tr>
+            <td>{{ squad.pname }}</td>
+            <td>{{ squad.page }}</td>
+            <td>
+                {% for position in squad.pposition.all %}
+                {{ position.position_name }} ({{ position.foot }}){% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </td>
+            <td>{{ squad.prating }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Addresses</h2>
+    <table>
+        <tr>
+            <th>Street</th>
+            <th>Postal Code</th>
+            <th>City</th>
+        </tr>
+        {% for address in addresses %}
+        <tr>
+            <td>{{ address.street }}</td>
+            <td>{{ address.postal_code }}</td>
+            <td>{{ address.city }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Clubs</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Country</th>
+            <th>Competitions</th>
+        </tr>
+        {% for club in clubs %}
+        <tr>
+            <td>{{ club.cname }}</td>
+            <td>{{ club.cadress.street }}, {{ club.cadress.postal_code }}, {{ club.cadress.city }}</td>
+            <td>{{ club.ccountry }}</td>
+            <td>{{ club.ccompetitions }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Matches</h2>
+    <table>
+        <tr>
+            <th>Club Name</th>
+            <th>Date</th>
+            <th>Stadium</th>
+        </tr>
+        {% for match in matches %}
+        <tr>
+            <td>{{ match.club_name.cname }}</td>
+            <td>{{ match.date }}</td>
+            <td>{{ match.stadium }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Table</h2>
+    <table>
+        <tr>
+            <th>Club Name</th>
+            <th>Point</th>
+            <th>Win</th>
+            <th>Lose</th>
+            <th>Draw</th>
+            <th>Played</th>
+            <th>Goal</th>
+        </tr>
+        {% for table_entry in table_entries %}
+        <tr>
+            <td>{{ table_entry.club_name.cname }}</td>
+            <td>{{ table_entry.point }}</td>
+            <td>{{ table_entry.win }}</td>
+            <td>{{ table_entry.lose }}</td>
+            <td>{{ table_entry.draw }}</td>
+            <td>{{ table_entry.played }}</td>
+            <td>{{ table_entry.goal }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

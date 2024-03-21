@@ -5,6 +5,7 @@ urlpatterns = [
    path("squad",views.squad, name ="squad_page"),
    path("table", views.table, name ="table_page"),
    path("match",views.match, name ="match_page"),
+   path("dashboard",views.adminPage, name ="dashboard_page"),
    path("ticket",views.ticket, name ="ticket_page"),
    path("fanPage",views.fanPage, name ="fanPage"),
    path("fan",views.FansFormViews.as_view(), name ="fan_page"),
