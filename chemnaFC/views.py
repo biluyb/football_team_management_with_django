@@ -147,16 +147,16 @@ def forgot(request):
     return render (request,"chemnaFC/forgot.html") 
 
 def admin_dashboard(request):
-    match_form = MatchForm()
-    position_form = PositionForm()
-    squad_form = SquadForm()
-    table_form = TableForm(request.POST or None)  # Initialize TableForm with submitted data if it exists
-    address_form = AdressForm()
-    clubs_form = ClubsForm()
+        position_form = PositionForm()
+        squad_form = SquadForm()
+        table_form = TableForm()  # Initialize TableForm with submitted data if it exists
+        address_form = AdressForm()
+        clubs_form = ClubsForm()
+        match_form = MatchForm()
 
-    if request.method == 'POST' and table_form.is_valid():
+        if squad_form.is_valid():
         # Save the TableForm data to the database
-        table_form.save()
+         squad_form.save()
 
         # Validate and save other forms if the TableForm is submitted
         if match_form.is_valid():
@@ -165,8 +165,8 @@ def admin_dashboard(request):
         if position_form.is_valid():
             position_form.save()
 
-        if squad_form.is_valid():
-            squad_form.save()
+        if table_form.is_valid():
+            table_form.save()
 
         if address_form.is_valid():
             address_form.save()
@@ -175,15 +175,15 @@ def admin_dashboard(request):
             clubs_form.save()
 
         # Handle successful form submission (e.g., redirect to a success page)
-        return redirect('success-page-url')
+            return redirect('/dashboard')
 
-    forms = {
-        'Match Form': match_form,
-        'Position Form': position_form,
-        'Squad Form': squad_form,
-        'Table Form': table_form,
-        'Address Form': address_form,
-        'Clubs Form': clubs_form,
-    }
+        forms = {
+            'Match Form': match_form,
+            'Position Form': position_form,
+            'Squad Form': squad_form,
+            'Table Form': table_form,
+            'Address Form': address_form,
+            'Clubs Form': clubs_form,
+        }
 
-    return render(request, 'chemnaFC/dashBoard.html', {'forms': forms})
+        return render(request, 'chemnaFC/dashBoard.html', {'forms': forms})
