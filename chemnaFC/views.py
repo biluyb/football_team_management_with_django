@@ -3,7 +3,7 @@ from typing import Any
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 
-from .forms import FanForm,RegisterForm
+from .forms import AdressForm, ClubsForm, FanForm, MatchForm, PositionForm,RegisterForm, SquadForm, TableForm
 from .models import Adress, Position, Squad, Matches,Table,Fans,FanPicture,Clubs
 
 from django.views import View
@@ -145,3 +145,45 @@ def logoutPage(request):
       
 def forgot(request):
     return render (request,"chemnaFC/forgot.html") 
+
+def admin_dashboard(request):
+    match_form = MatchForm()
+    position_form = PositionForm()
+    squad_form = SquadForm()
+    table_form = TableForm(request.POST or None)  # Initialize TableForm with submitted data if it exists
+    address_form = AdressForm()
+    clubs_form = ClubsForm()
+
+    if request.method == 'POST' and table_form.is_valid():
+        # Save the TableForm data to the database
+        table_form.save()
+
+        # Validate and save other forms if the TableForm is submitted
+        if match_form.is_valid():
+            match_form.save()
+
+        if position_form.is_valid():
+            position_form.save()
+
+        if squad_form.is_valid():
+            squad_form.save()
+
+        if address_form.is_valid():
+            address_form.save()
+
+        if clubs_form.is_valid():
+            clubs_form.save()
+
+        # Handle successful form submission (e.g., redirect to a success page)
+        return redirect('success-page-url')
+
+    forms = {
+        'Match Form': match_form,
+        'Position Form': position_form,
+        'Squad Form': squad_form,
+        'Table Form': table_form,
+        'Address Form': address_form,
+        'Clubs Form': clubs_form,
+    }
+
+    return render(request, 'chemnaFC/dashBoard.html', {'forms': forms})
