@@ -33,22 +33,6 @@ def match(request):
     match = Matches.objects.all()
     return render(request , "chemnaFC/match.html", {"match":match})
 
-def adminPage(request):
-    squad = Squad.objects.all()
-    match = Matches.objects.all()
-    table=Table.objects.all()
-    clubs = Clubs.objects.all()
-    adress =Adress.objects.all()
-    position = Position.objects.all()
-    return render(request,"chemnaFC/dashBoard.html",{
-        "squad":squad,
-        "match":match,
-        "table":table,
-        "clubs":clubs,
-        "adress":adress,
-        "position":position
-        })
-
 @login_required(login_url='/login')
 def ticket(request):
     return render(request , "chemnaFC/ticket.html")
