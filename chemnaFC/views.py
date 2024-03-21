@@ -17,7 +17,6 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from .decorators import unauthenticated_user,not_fan
 # Create your views here.
-@unauthenticated_user
 def index(request):
     return render(request , "chemnaFC/index.html")
 
@@ -122,7 +121,8 @@ class FavoriteView(View):
           favorite_id=request.POST["favorite_input"]
           request.session["favorite_ses"]=favorite_id
           return HttpResponseRedirect("/fan_list/" + favorite_id)
-      
+
+
 @unauthenticated_user    
 def signup(request):
         if request.method == "POST":

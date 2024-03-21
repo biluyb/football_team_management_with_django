@@ -91,9 +91,9 @@
     <li><a href="{% url 'fanPage' %}">Fan</a></li>
   {% if user.is_authenticated %}
     <li>{{request.user}}</li>
+    <li><a href="{% url 'logout_page' %}">Logout</a></li>
     {% else %}
     <li><a href="{% url 'login_page' %}">Login</a></li>
     {% endif %}   
-    <li><a href="{% url 'logout_page' %}">Logout</a></li>
   </ul>
 </header>
