@@ -8,7 +8,6 @@ class Position(models.Model):
 
     def __str__(self):
      return f"{self.position_name} ({self.foot})"
-
 class Squad(models.Model):
     pname = models.CharField(max_length=100)
     page = models.IntegerField()
@@ -17,7 +16,6 @@ class Squad(models.Model):
     
     def __str__(self):
         return f"{self.pname} ({self.prating})"
-
 class Adress(models.Model):
     street = models.CharField(max_length=200)
     postal_code = models.IntegerField()
@@ -25,7 +23,6 @@ class Adress(models.Model):
 
     def __str__(self):
       return f"{self.street} ({self.postal_code})"
-
 class Clubs(models.Model):
     cname = models.CharField( max_length=200)
     cadress = models.OneToOneField(Adress,on_delete=models.CASCADE, null= True)
@@ -42,7 +39,6 @@ class Matches(models.Model):
 
     def __str__(self):
         return f"{self.club_name} ({self.date})"
-
 class Table(models.Model):
    club_name= models.OneToOneField(Clubs,  on_delete=models.CASCADE, null= True)
    point = models.IntegerField()
