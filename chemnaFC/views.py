@@ -105,7 +105,7 @@ class FavoriteView(View):
           favorite_id=request.POST["favorite_input"]
           request.session["favorite_ses"]=favorite_id
           return HttpResponseRedirect("/fan_list/" + favorite_id)
-@unauthenticated_user    
+# @unauthenticated_user    
 def signup(request):
         if request.method == "POST":
             form = RegisterForm(request.POST)
