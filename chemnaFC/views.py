@@ -144,13 +144,13 @@ def logoutPage(request):
 def forgot(request):
     return render (request,"chemnaFC/forgot.html") 
 
-# def admin_dashboard(request):
-#     match_form = MatchForm(request.POST or None)
-#     position_form = PositionForm(request.POST or None)
-#     squad_form = SquadForm(request.POST or None)
-#     table_form = TableForm(request.POST or None)
-#     address_form = AdressForm(request.POST or None)
-#     clubs_form = ClubsForm(request.POST or None)
+def admin_dashboard(request):
+    match_form = MatchForm(request.POST or None)
+    position_form = PositionForm(request.POST or None)
+    squad_form = SquadForm(request.POST or None)
+    table_form = TableForm(request.POST or None)
+    address_form = AdressForm(request.POST or None)
+    clubs_form = ClubsForm(request.POST or None)
 
     forms = {
         'Match Form': match_form,
