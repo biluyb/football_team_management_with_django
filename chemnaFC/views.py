@@ -105,8 +105,6 @@ class FavoriteView(View):
           favorite_id=request.POST["favorite_input"]
           request.session["favorite_ses"]=favorite_id
           return HttpResponseRedirect("/fan_list/" + favorite_id)
-
-
 @unauthenticated_user    
 def signup(request):
         if request.method == "POST":
@@ -167,8 +165,5 @@ def admin_dashboard(request):
         for name, form in forms.items():
             if form.is_valid():
                 form.save()
-
-        # Handle successful form submission (e.g., redirect to a success page)
         return redirect('/dashboard')
-
     return render(request, 'chemnaFC/dashBoard.html', {'forms': forms})
