@@ -1,7 +1,4 @@
-{% extends "base.html" %}
-{% load static %}
-
-{% block content %}
+{% extends "base.html" %} {% load static %} {% block content %}
 <style>
   /* Add your CSS styles here */
   header {
@@ -10,19 +7,19 @@
     padding: 10px;
     text-align: center;
   }
-  
+
   ul {
     list-style-type: none;
     padding: 0;
     text-align: center;
     margin-bottom: 20px;
   }
-  
+
   ul li {
     display: inline-block;
     margin-right: 10px;
   }
-  
+
   ul li a {
     text-decoration: none;
     color: #fff;
@@ -32,12 +29,12 @@
     background-color: #f2f2f2;
     transition: background-color 0.3s ease;
   }
-  
+
   p {
     margin-bottom: 20px;
     text-align: justify;
   }
-  
+
   img {
     max-width: 100%;
     height: auto;
@@ -45,7 +42,7 @@
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
-  
+
   .container {
     max-width: 800px;
     margin: 0 auto;
@@ -96,34 +93,50 @@
 
 <header>{% include "chemnaFC/header/header.html" %}</header>
 
-
-
 <div class="container">
   <h1>Welcome to Chemna Football Club (CFC)</h1>
   <p class="intro">
-    A dynamic and passionate football team dedicated to excellence on and off the field. Founded in 1994, CFC has grown to become one of the most respected and successful football clubs in the region.
+    A dynamic and passionate football team dedicated to excellence on and off
+    the field. Founded in 1994, CFC has grown to become one of the most
+    respected and successful football clubs in the region.
   </p>
 
-  <img src="{% static "chemnaFC/images/stadium.jpg" %}" alt="Stadium" class="feature-img" />
+  <img src="{% static "chemnaFC/images/stadium.jpg" %}" alt="Stadium"
+  class="feature-img" />
 
   <p>
-    At CFC, we are driven by a strong commitment to teamwork, sportsmanship, and a relentless pursuit of victory. Our players, coaches, and staff embody the true spirit of the game, displaying exceptional skills, determination, and a never-give-up attitude.
+    At CFC, we are driven by a strong commitment to teamwork, sportsmanship, and
+    a relentless pursuit of victory. Our players, coaches, and staff embody the
+    true spirit of the game, displaying exceptional skills, determination, and a
+    never-give-up attitude.
   </p>
 
   <p>
-    With a rich history of accomplishments, CFC has secured numerous championships and accolades throughout the years. We take pride in our distinctive style of play, combining tactical brilliance, creative flair, and a strong emphasis on player development.
+    With a rich history of accomplishments, CFC has secured numerous
+    championships and accolades throughout the years. We take pride in our
+    distinctive style of play, combining tactical brilliance, creative flair,
+    and a strong emphasis on player development.
   </p>
 
-  <img src="{% static "chemnaFC/images/fans.jpg" %}" alt="Fans" class="feature-img" />
+  <img src="{% static "chemnaFC/images/fans.jpg" %}" alt="Fans"
+  class="feature-img" />
 
   <p>
-    Beyond the field, CFC is deeply rooted in the local community, engaging in various outreach programs, charity initiatives, and youth development projects. We believe in using the power of football to inspire and make a positive impact in the lives of others.
+    Beyond the field, CFC is deeply rooted in the local community, engaging in
+    various outreach programs, charity initiatives, and youth development
+    projects. We believe in using the power of football to inspire and make a
+    positive impact in the lives of others.
   </p>
 
-  <img src="{% static "chemnaFC/images/ball.jpg" %}" alt="Ball" class="feature-img" />
+  <img src="{% static "chemnaFC/images/ball.jpg" %}" alt="Ball"
+  class="feature-img" />
 
   <p>
-    Whether you are a dedicated fan, a passionate player, or simply someone who appreciates the beautiful game, we invite you to join us on this incredible journey. Explore our website to stay up-to-date with the latest news, fixtures, player profiles, and exclusive content. Together, let's celebrate the joy and thrill of football with Chemna Football Club.
+    Whether you are a dedicated fan, a passionate player, or simply someone who
+    appreciates the beautiful game, we invite you to join us on this incredible
+    journey. Explore our website to stay up-to-date with the latest news,
+    fixtures, player profiles, and exclusive content. Together, let's celebrate
+    the joy and thrill of football with Chemna Football Club.
   </p>
 </div>
 <footer>{% include "chemnaFC/header/footer.html" %}</footer>
