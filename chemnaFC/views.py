@@ -165,5 +165,5 @@ def admin_dashboard(request):
         for name, form in forms.items():
             if form.is_valid():
                 form.save()
-        return redirect('/dashboard')
-    return render(request, 'chemnaFC/dashBoard.html', {'forms': forms})
+    #     return redirect('/dashboard')
+    # return render(request, 'chemnaFC/dashBoard.html', {'forms': forms})
