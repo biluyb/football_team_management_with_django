@@ -2,6 +2,7 @@
 
 {% block content %}
   <style>
+    /* Add your CSS styles here */
     .dashboard {
       display: flex;
       flex-wrap: wrap;
@@ -57,10 +58,10 @@
       <div class="form-container">
         <h2>{{ form_name }}</h2>
         <form method="post">
-          {% comment %} {% csrf_token %}
+          {% csrf_token %}
           {{ form_obj.as_p }}
           <button type="submit">Submit</button>
-        </form> {% endcomment %}
+        </form>
       </div>
     {% endfor %}
   </div>
