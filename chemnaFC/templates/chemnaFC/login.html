@@ -82,10 +82,11 @@
         <label for="password">Password</label><br>
         <input type="password" id="password" name="password"><br>
         <input type="submit" value="Login"><br>
-        {% for message in messages %}
-        <p>{{ message }}</p>
+        {% for message in messages %} 
+        <p style= "color:red">{{ message }}</p>
         {% endfor %}
     </form>
+
     <p class="signup-link">Don't have an account? <a href="{% url "register_page" %}">Sign up</a></p>
 </div>
 {% endblock content %}

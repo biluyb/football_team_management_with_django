@@ -133,7 +133,7 @@ def loginPage(request):
             else:
                 return redirect("/")
         else:
-            messages.info(request,'"incorrect username or password"')
+            messages.info(request,'Invalid username or password!')
     context = {}
     return render (request,"chemnaFC/login.html",context)
 
