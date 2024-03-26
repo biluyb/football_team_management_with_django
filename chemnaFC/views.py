@@ -15,7 +15,7 @@ from django.contrib.auth import  authenticate, login,logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from .decorators import unauthenticated_user,not_fan
+from .decorators import unauthenticated_user,not_fan,allowed_user
 # Create your views here.
 def index(request):
     return render(request , "chemnaFC/index.html")
@@ -144,6 +144,7 @@ def logoutPage(request):
 def forgot(request):
     return render (request,"chemnaFC/forgot.html") 
 
+@allowed_user(allowed_roles=['admin'])
 def admin_dashboard(request):
     match_form = MatchForm(request.POST or None)
     position_form = PositionForm(request.POST or None)
