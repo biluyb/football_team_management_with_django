@@ -1,3 +1,4 @@
 {
-  "cSpell.words": ["chemna", "pname"]
+  "cSpell.words": ["chemna", "pname"],
+  "python.analysis.typeCheckingMode": "off"
 }
