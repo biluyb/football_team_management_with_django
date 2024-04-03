@@ -152,7 +152,7 @@ def logoutPage(request):
     logout(request)
     return redirect('login_page')
       
-# def forgot(request):
+def forgot(request):
 #     if request.method == 'POST':
 #         email = request.POST.get('email')
 #         user = User.objects.filter(email=email).first()
@@ -195,7 +195,7 @@ def logoutPage(request):
 #     else:
 #         messages.error(request, 'Invalid password reset link.')
 #         return redirect('login')
-#     # return render (request,"chemnaFC/forgot.html") 
+    return render (request,"chemnaFC/forgot.html") 
 
 @allowed_user(allowed_roles=['admin'])
 def admin_dashboard(request):
