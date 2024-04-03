@@ -3,6 +3,8 @@ from typing import Any
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 
+from chemna_football_club.templatetags.custom_filters import urlsafe_base64
+
 from .forms import AdressForm, ClubsForm, FanForm, MatchForm, PositionForm,RegisterForm, SquadForm, TableForm
 from .models import Adress, Position, Squad, Matches,Table,Fans,FanPicture,Clubs
 
@@ -27,6 +29,8 @@ from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes
+from django.template import engines
+
 # Create your views here.
 def index(request):
     return render(request , "chemnaFC/index.html")
@@ -159,7 +163,7 @@ def forgot(request):
         if user:
             current_site = get_current_site(request)
             mail_subject = 'Reset your password'
-            message = render_to_string('reset_password_email.html', {
+            message = render_to_string('chemnaFC/reset_password_email.html', {
                 'user': user,
                 'domain': current_site.domain,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
@@ -174,6 +178,8 @@ def forgot(request):
     return render(request, 'chemnaFC/forgot.html')
 
 def reset_password(request, uidb64, token):
+    template_engine = engines['django']
+    template_engine.filters['urlsafe_base64'] = urlsafe_base64
     try:
         uid = force_bytes(urlsafe_base64_decode(uidb64))
         user = User.objects.get(pk=uid)
@@ -191,7 +197,7 @@ def reset_password(request, uidb64, token):
                 return redirect('login')
             else:
                 messages.error(request, 'Passwords do not match.')
-        return render(request, 'reset_password.html')
+        return render(request, 'chemnaFC/reset_password_email.html')
     else:
         messages.error(request, 'Invalid password reset link.')
         return redirect('login')
