@@ -16,6 +16,17 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from .decorators import unauthenticated_user,not_fan,allowed_user
+
+
+from django.contrib import messages
+from django.contrib.auth.models import User
+from django.contrib.auth.tokens import default_token_generator
+from django.contrib.auth import views as auth_views
+from django.contrib.sites.shortcuts import get_current_site
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes, force_text
 # Create your views here.
 def index(request):
     return render(request , "chemnaFC/index.html")
@@ -141,8 +152,50 @@ def logoutPage(request):
     logout(request)
     return redirect('login_page')
       
-def forgot(request):
-    return render (request,"chemnaFC/forgot.html") 
+# def forgot(request):
+#     if request.method == 'POST':
+#         email = request.POST.get('email')
+#         user = User.objects.filter(email=email).first()
+#         if user:
+#             current_site = get_current_site(request)
+#             mail_subject = 'Reset your password'
+#             message = render_to_string('reset_password_email.html', {
+#                 'user': user,
+#                 'domain': current_site.domain,
+#                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+#                 'token': default_token_generator.make_token(user),
+#             })
+#             email = EmailMessage(mail_subject, message, to=[email])
+#             email.send()
+#             messages.success(request, 'An email has been sent with instructions to reset your password.')
+#             return redirect('login')
+#         else:
+#             messages.error(request, 'Invalid email address.')
+#     return render(request, 'chemnaFC/forgot.html')
+
+# def reset_password(request, uidb64, token):
+#     try:
+#         uid = force_bytes(urlsafe_base64_decode(uidb64))
+#         user = User.objects.get(pk=uid)
+#     except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+#         user = None
+
+#     if user is not None and default_token_generator.check_token(user, token):
+#         if request.method == 'POST':
+#             password = request.POST.get('password')
+#             confirm_password = request.POST.get('confirm_password')
+#             if password == confirm_password:
+#                 user.set_password(password)
+#                 user.save()
+#                 messages.success(request, 'Your password has been reset successfully. You can now login with your new password.')
+#                 return redirect('login')
+#             else:
+#                 messages.error(request, 'Passwords do not match.')
+#         return render(request, 'reset_password.html')
+#     else:
+#         messages.error(request, 'Invalid password reset link.')
+#         return redirect('login')
+#     # return render (request,"chemnaFC/forgot.html") 
 
 @allowed_user(allowed_roles=['admin'])
 def admin_dashboard(request):
