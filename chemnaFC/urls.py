@@ -20,4 +20,5 @@ urlpatterns = [
    path("signup",views.signup, name ="register_page"),
    path("logout",views.logoutPage, name ="logout_page"),
    path("forgot",views.forgot, name ="forgot_page"),
+   path('reset-password/<str:uidb64>/<str:token>/', views.reset_password, name='reset_password'),
 ]
