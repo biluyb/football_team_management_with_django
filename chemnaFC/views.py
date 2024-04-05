@@ -176,7 +176,7 @@ def forgot(request):
         else:
             messages.error(request, 'Invalid email address.')
     return render(request, 'chemnaFC/forgot.html')
-
+ 
 def reset_password(request, uidb64, token):
     template_engine = engines['django']
     template_engine.filters['urlsafe_base64'] = urlsafe_base64

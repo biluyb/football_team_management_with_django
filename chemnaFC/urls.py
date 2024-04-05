@@ -1,7 +1,7 @@
 from django.urls import path
 from .import views
 urlpatterns = [
-   path("",views.index, name ="index_page") ,
+   path("",views.index, name ="index_page"),
    path("squad",views.squad, name ="squad_page"),
    path("table", views.table, name ="table_page"),
    path("match",views.match, name ="match_page"),
