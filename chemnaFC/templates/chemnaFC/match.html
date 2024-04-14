@@ -108,9 +108,9 @@
   <ul>
     {% for games in match %}
     <li class="game-color">
-      <a href="{% url 'single_fan_page' games.pk %}">
-        Chemna FC Vs {{ games.club_name|title }}
-      </a>
+      
+       <h4 > Chemna FC Vs {{ games.club_name|title }} </h4>
+      
       <div class="game-info">
         <p>Stadium: {{ games.stadium|title }}</p>
         <p>Time: {{ games.date|date }}</p>
