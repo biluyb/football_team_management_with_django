@@ -112,16 +112,16 @@
        <h4 > Chemna FC Vs {{ games.club_name|title }} </h4>
       
       <div class="game-info">
-        <p>Stadium: {{ games.stadium|title }}</p>
-        <p>Time: {{ games.date|date }}</p>
-        <p><a href="{% url "ticket_page" %}">get ticket </a></p>
+        <p> Stadium: {{ games.stadium|title }}</p>
+        <p> Time: {{ games.date|date }}</p>
+        <p><a href="{% url "ticket_page" %}"> get ticket </a></p>
 
       </div>
     </li>
     {% endfor %}
   </ul>
 
-  <a class="home-link" href="{% url 'index_page' %}">Home</a>
+  <a class="home-link" href="{% url 'index_page' %}"> Home </a>
 </div>
 <footer>{% include "chemnaFC/header/footer.html" %}</footer>
 
